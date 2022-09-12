@@ -22,26 +22,35 @@ export function make_wp_fetch( config ) {
 		return fetch( resource, options );
 	}
 
+	/**
+	 * Get WordPress site info
+	 *
+	 * @return {Promise<import('$types').WP_Info>} Site info.
+	 */
+	async function get_info() {
+		const response = await wp_fetch( '/' );
+		const { authentication, description, gmt_offset, home, name, site_icon, site_logo, timezone_string, url } =
+			await response.json();
+
+		return {
+			authentication,
+			description,
+			gmt_offset,
+			home,
+			name,
+			site_icon,
+			site_logo,
+			timezone_string,
+			url,
+		};
+	}
+
 	/** @type {Handle} */
 	return async function ( { event, resolve } ) {
 		event.locals.wp_fetch = wp_fetch;
 
 		if ( add_info ) {
-			const response = await wp_fetch( '/' );
-			const { authentication, description, gmt_offset, home, name, site_icon, site_logo, timezone_string, url } =
-				await response.json();
-
-			event.locals.wp_info = {
-				authentication,
-				description,
-				gmt_offset,
-				home,
-				name,
-				site_icon,
-				site_logo,
-				timezone_string,
-				url,
-			};
+			event.locals.wp_info = await get_info();
 		}
 
 		return await resolve( event );
