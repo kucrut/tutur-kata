@@ -1,7 +1,8 @@
 <script>
 	/** @type {import('./$types').LayoutData} */
-
 	export let data;
+
+	import '../mvp.css';
 </script>
 
 <svelte:head>
