@@ -33,11 +33,12 @@ export function make_wp_fetch( config ) {
 	/** @type {import('$types').wp_fetch} */
 	async function wp_fetch( path, options = undefined ) {
 		const resource = generate_rest_url( root, path );
+		const request = new Request( resource, options );
 
 		// TODO: Add nonce if provided in the config.
 		// TODO: Refresh nonce when needed if the URL is provided in the config.
 
-		return fetch( resource, options );
+		return fetch( request );
 	}
 
 	/**
