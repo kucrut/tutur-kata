@@ -269,18 +269,17 @@ sup {
 a {
 	color: var( --color-link );
 	display: inline-block;
-	font-weight: bold;
-	text-decoration: none;
 }
 
 a:active {
 	filter: brightness( var( --active-brightness ) );
-	text-decoration: underline;
+	text-decoration: none;
 }
 
+a:focus,
 a:hover {
 	filter: brightness( var( --hover-brightness ) );
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 a b,
@@ -291,10 +290,9 @@ button {
 	border-radius: var( --border-radius );
 	display: inline-block;
 	font-size: medium;
-	font-weight: bold;
+	font-weight: 600;
 	line-height: var( --line-height );
-	margin: 0.5rem 0;
-	padding: 1rem 2rem;
+	padding: 0.25rem 0.75rem;
 }
 
 button {
@@ -305,6 +303,7 @@ button:active {
 	filter: brightness( var( --active-brightness ) );
 }
 
+button:focus,
 button:hover {
 	cursor: pointer;
 	filter: brightness( var( --hover-brightness ) );
@@ -323,8 +322,6 @@ a i {
 	border: 2px solid var( --color-link );
 	border-radius: var( --border-radius );
 	color: var( --color-link );
-	display: inline-block;
-	padding: 1rem 2rem;
 }
 
 article aside a {
