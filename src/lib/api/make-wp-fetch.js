@@ -1,7 +1,7 @@
 /** @typedef {import('@sveltejs/kit').Handle} Handle */
 
 /**
- * Generate REST URL.
+ * Generate REST URL
  *
  * @param {string} root REST root URL.
  * @param {string} path REST API path.
