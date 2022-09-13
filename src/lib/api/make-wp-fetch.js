@@ -21,10 +21,10 @@ function generate_rest_url( root, path ) {
 /**
  * Make wp_fetch function
  *
- * @param {Object}  config          Configuration object.
- * @param {boolean} config.add_info Whether the site info object should always be added to event.locals as `wp_info`.
- * @param {string}  config.app_auth A pair of `user:password` where password is an application password for authenticated requests.
- * @param {string}  config.root     WordPress REST API root URL.
+ * @param {Object}   config          Configuration object.
+ * @param {boolean=} config.add_info Whether the site info object should always be added to event.locals as `wp_info`.
+ * @param {string=}  config.app_auth A pair of `user:password` where password is an application password for authenticated requests.
+ * @param {string}   config.root     WordPress REST API root URL.
  *
  * @return {Handle} Handle function.
  */
