@@ -9,4 +9,6 @@
 	<title>{data.wp_info.name}</title>
 </svelte:head>
 
-<slot />
+<main>
+	<slot />
+</main>
