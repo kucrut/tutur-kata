@@ -17,6 +17,7 @@ specifiers:
   svelte-check: ^2.7.1
   typescript: ^4.7.4
   vite: ^3.1.0
+  wp-types: ^3.60.0
 
 devDependencies:
   '@babel/core': 7.19.0
@@ -35,6 +36,7 @@ devDependencies:
   svelte-check: 2.9.0_hbsbl6zsfrhx2ucdnssqnzroku
   typescript: 4.8.3
   vite: 3.1.0
+  wp-types: 3.60.0
 
 packages:
 
@@ -4699,6 +4701,12 @@ packages:
     resolution: {integrity: sha512-AV33EzqiFJ3fj+mPlKABN59YFPReLkDxQnj067Z3uEOeRQf3g05WprL0RDuqM7UBhSRo9W1rMSC2KvZmjE5UOA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+    dev: true
+
+  /wp-types/3.60.0:
+    resolution: {integrity: sha512-DVIg+eQJYiixXIP6u2G+7mjjT8SvHj3UB02WTz91x1ejFv/4+pXu7IRb4m6IrOL3/hDw5EreUyp0y4OF4CsesQ==}
+    dependencies:
+      typescript: 4.8.3
     dev: true
 
   /wrappy/1.0.2:
