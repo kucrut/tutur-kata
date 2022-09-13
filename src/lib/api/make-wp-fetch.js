@@ -21,22 +21,27 @@ function generate_rest_url( root, path ) {
 /**
  * Make wp_fetch function
  *
- * @param {Object}   config          Configuration object.
- * @param {boolean=} config.add_info Whether the site info object should always be added to event.locals as `wp_info`.
- * @param {string}   config.root     WordPress REST API root URL.
+ * @param {Object}  config          Configuration object.
+ * @param {boolean} config.add_info Whether the site info object should always be added to event.locals as `wp_info`.
+ * @param {string}  config.app_auth A pair of `user:password` where password is an application password for authenticated requests.
+ * @param {string}  config.root     WordPress REST API root URL.
  *
  * @return {Handle} Handle function.
  */
 export function make_wp_fetch( config ) {
-	const { add_info, root } = config;
+	const { add_info, app_auth, root } = config;
 
 	/** @type {import('$types').wp_fetch} */
 	async function wp_fetch( path, options = undefined ) {
 		const resource = generate_rest_url( root, path );
 		const request = new Request( resource, options );
 
-		// TODO: Add nonce if provided in the config.
+		// TODO: Add cookie & nonce if passed (highest priority).
 		// TODO: Refresh nonce when needed if the URL is provided in the config.
+
+		if ( app_auth ) {
+			request.headers.append( 'Authorization', `Basic ${ Buffer.from( `${ app_auth }` ).toString( 'base64' ) }` );
+		}
 
 		return fetch( request );
 	}
