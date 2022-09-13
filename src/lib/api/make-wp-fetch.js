@@ -48,11 +48,9 @@ export function make_wp_fetch( config ) {
 	 */
 	async function get_info() {
 		const response = await wp_fetch( '/' );
-		const { authentication, description, gmt_offset, home, name, site_icon, site_logo, timezone_string, url } =
-			await response.json();
+		const { description, gmt_offset, home, name, site_icon, site_logo, timezone_string, url } = await response.json();
 
 		return {
-			authentication,
 			description,
 			gmt_offset,
 			home,

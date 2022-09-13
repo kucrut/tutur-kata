@@ -1,7 +1,6 @@
 export type wp_fetch = ( path: string, options?: RequestInit ) => Promise< Response >;
 
 export interface WP_Info {
-	authentication: string[];
 	description: string;
 	gmt_offset: number;
 	home: string;
