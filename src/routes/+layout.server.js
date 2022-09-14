@@ -1,8 +1,8 @@
 /**
- * @typedef {import('../types').wp_fetch} wp_fetch
- * @typedef {import('../types').Favicon} Favicon
- * @typedef {import('../types').TileImage} TileImage
- * @typedef {import('../types').WP_REST_API_Media} WP_REST_API_Media
+ * @typedef {import('$types').wp_fetch} wp_fetch
+ * @typedef {import('$types').Favicon} Favicon
+ * @typedef {import('$types').TileImage} TileImage
+ * @typedef {import('$types').WP_REST_API_Media} WP_REST_API_Media
  * @typedef {(Favicon|TileImage)[]} Icons
  */
 
