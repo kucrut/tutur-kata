@@ -14,8 +14,12 @@
 	--color-table: #118bee;
 	--color-text: #000;
 	--color-text-secondary: #999;
-	--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
-		sans-serif;
+	--font-family-monospace: Consolas, Monaco, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter',
+		'Liberation Mono', 'Nimbus Mono L', 'Courier New', Courier, monospace;
+	--font-family-sans-serif: system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+		'Helvetica Neue', sans-serif;
+	--font-family-serif: Constantia, 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'Liberation Serif', Georgia,
+		serif;
 	--hover-brightness: 1.2;
 	--justify-important: center;
 	--justify-normal: left;
@@ -51,7 +55,7 @@ article aside {
 body {
 	background: var( --color-bg );
 	color: var( --color-text );
-	font-family: var( --font-family );
+	font-family: var( --font-family-serif );
 	line-height: var( --line-height );
 	margin: 0;
 	overflow-x: hidden;
@@ -197,6 +201,7 @@ samp {
 	background-color: var( --color-accent );
 	border-radius: var( --border-radius );
 	color: var( --color-text );
+	font-family: var( --font-family-monospace );
 	display: inline-block;
 	margin: 0 0.1rem;
 	padding: 0 0.5rem;
@@ -218,6 +223,7 @@ h4,
 h5,
 h6 {
 	line-height: var( --line-height );
+	font-family: var( --font-family-sans-serif );
 }
 
 mark {
