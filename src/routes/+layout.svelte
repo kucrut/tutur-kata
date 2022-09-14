@@ -2,7 +2,7 @@
 	/** @type {import('./$types').LayoutData} */
 	export let data;
 
-	import '../mvp.css';
+	import '../app.css';
 </script>
 
 <svelte:head>
