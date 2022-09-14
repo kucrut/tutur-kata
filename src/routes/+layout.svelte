@@ -12,3 +12,9 @@
 <main>
 	<slot />
 </main>
+
+<style>
+	main:only-of-type {
+		padding-top: unset;
+	}
+</style>
