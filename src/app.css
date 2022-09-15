@@ -1,4 +1,6 @@
-/* Based on MVP.css v1.9 - https://github.com/andybrewer/mvp */
+/**
+ * Based on MVP.css v1.9 - https://github.com/andybrewer/mvp
+ */
 
 :root {
 	--active-brightness: 0.85;
@@ -14,12 +16,14 @@
 	--color-table: #118bee;
 	--color-text: #000;
 	--color-text-secondary: #999;
+	/* stylelint-disable value-keyword-case,value-list-comma-newline-after,declaration-colon-newline-after,max-line-length */
 	--font-family-monospace: Consolas, Monaco, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter',
 		'Liberation Mono', 'Nimbus Mono L', 'Courier New', Courier, monospace;
 	--font-family-sans-serif: system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
 		'Helvetica Neue', sans-serif;
 	--font-family-serif: Constantia, 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'Liberation Serif', Georgia,
 		serif;
+	/* stylelint-enable */
 	--hover-brightness: 1.2;
 	--justify-important: center;
 	--justify-normal: left;
@@ -45,154 +49,8 @@
 	}
 }
 
-/* Layout */
-article aside {
-	background: var( --color-secondary-accent );
-	border-left: 4px solid var( --color-secondary );
-	padding: 0.01rem 0.8rem;
-}
-
-body {
-	background: var( --color-bg );
-	color: var( --color-text );
-	font-family: var( --font-family-serif );
-	line-height: var( --line-height );
-	margin: 0;
-	overflow-x: hidden;
-	padding: 0;
-}
-
-footer,
-header,
-main {
-	margin: 0 auto;
-	max-width: var( --width-content );
-	padding: 3rem 1rem;
-}
-
-hr {
-	background-color: var( --color-bg-secondary );
-	border: none;
-	height: 1px;
-	margin: 4rem 0;
-	width: 100%;
-}
-
-section {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: var( --justify-important );
-}
-
-section img,
-article img {
-	max-width: 100%;
-}
-
-section pre {
-	overflow: auto;
-}
-
-section aside {
-	border: 1px solid var( --color-bg-secondary );
-	border-radius: var( --border-radius );
-	box-shadow: var( --box-shadow ) var( --color-shadow );
-	margin: 1rem;
-	padding: 1.25rem;
-	width: var( --width-card );
-}
-
-section aside:hover {
-	box-shadow: var( --box-shadow ) var( --color-bg-secondary );
-}
-
 [hidden] {
 	display: none;
-}
-
-/* Headers */
-article header,
-div header,
-main header {
-	padding-top: 0;
-}
-
-header {
-	text-align: var( --justify-important );
-}
-
-header a b,
-header a em,
-header a i,
-header a strong {
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
-}
-
-header nav img {
-	margin: 1rem 0;
-}
-
-section header {
-	padding-top: 0;
-	width: 100%;
-}
-
-/* Nav */
-nav {
-	align-items: center;
-	display: flex;
-	font-weight: bold;
-	justify-content: space-between;
-	margin-bottom: 7rem;
-}
-
-nav ul {
-	list-style: none;
-	padding: 0;
-}
-
-nav ul li {
-	display: inline-block;
-	margin: 0 0.5rem;
-	position: relative;
-	text-align: left;
-}
-
-/* Nav Dropdown */
-nav ul li:hover ul {
-	display: block;
-}
-
-nav ul li ul {
-	background: var( --color-bg );
-	border: 1px solid var( --color-bg-secondary );
-	border-radius: var( --border-radius );
-	box-shadow: var( --box-shadow ) var( --color-shadow );
-	display: none;
-	height: auto;
-	left: -2px;
-	padding: 0.5rem 1rem;
-	position: absolute;
-	top: 1.7rem;
-	white-space: nowrap;
-	width: auto;
-	z-index: 1;
-}
-
-nav ul li ul::before {
-	/* fill gap above to make mousing over them easier */
-	content: '';
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: -0.5rem;
-	height: 0.5rem;
-}
-
-nav ul li ul li,
-nav ul li ul li a {
-	display: block;
 }
 
 /* Typography */
@@ -212,7 +70,7 @@ details {
 }
 
 details summary {
-	font-weight: bold;
+	font-weight: 600;
 	cursor: pointer;
 }
 
@@ -228,11 +86,6 @@ h6 {
 
 mark {
 	padding: 0.1rem;
-}
-
-ol li,
-ul li {
-	padding: 0.2rem 0;
 }
 
 p {
@@ -264,17 +117,44 @@ sup {
 	border-radius: var( --border-radius );
 	color: var( --color-bg );
 	font-size: xx-small;
-	font-weight: bold;
+	font-weight: 600;
 	margin: 0.2rem;
 	padding: 0.2rem 0.3rem;
 	position: relative;
-	top: -2px;
+	inset-block-start: -2px;
+}
+
+/* Layouts */
+footer,
+header,
+main {
+	margin: 0 auto;
+	max-width: var( --width-content );
+	padding: 3rem 1rem;
+}
+
+hr {
+	background-color: var( --color-bg-secondary );
+	border: none;
+	height: 1px;
+	margin: 4rem 0;
+	width: 100%;
+}
+
+section {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: var( --justify-important );
 }
 
 /* Links */
 a {
 	color: var( --color-link );
 	display: inline-block;
+}
+
+article aside a {
+	color: var( --color-secondary );
 }
 
 a:active {
@@ -301,20 +181,6 @@ button {
 	padding: 0.25rem 0.75rem;
 }
 
-button {
-	font-family: var( --font-family );
-}
-
-button:active {
-	filter: brightness( var( --active-brightness ) );
-}
-
-button:focus,
-button:hover {
-	cursor: pointer;
-	filter: brightness( var( --hover-brightness ) );
-}
-
 a b,
 a strong,
 button {
@@ -330,8 +196,18 @@ a i {
 	color: var( --color-link );
 }
 
-article aside a {
-	color: var( --color-secondary );
+button {
+	font-family: var( --font-family );
+}
+
+button:active {
+	filter: brightness( var( --active-brightness ) );
+}
+
+button:focus,
+button:hover {
+	cursor: pointer;
+	filter: brightness( var( --hover-brightness ) );
 }
 
 /* Images */
@@ -349,19 +225,6 @@ figure figcaption {
 }
 
 /* Forms */
-
-button:disabled,
-input:disabled {
-	background: var( --color-bg-secondary );
-	border-color: var( --color-bg-secondary );
-	color: var( --color-text-secondary );
-	cursor: not-allowed;
-}
-
-button[disabled]:hover {
-	filter: none;
-}
-
 form {
 	border: 1px solid var( --color-bg-secondary );
 	border-radius: var( --border-radius );
@@ -387,6 +250,10 @@ textarea {
 	max-width: var( --width-card-wide );
 }
 
+label {
+	margin-block-end: 0.2rem;
+}
+
 input[type='checkbox'],
 input[type='radio'] {
 	display: inline-block;
@@ -395,9 +262,9 @@ input[type='radio'] {
 input[type='checkbox'] + label,
 input[type='radio'] + label {
 	display: inline-block;
-	font-weight: normal;
+	font-weight: 300;
 	position: relative;
-	top: 1px;
+	inset-block-start: 1px;
 }
 
 input[type='range'] {
@@ -409,18 +276,25 @@ select,
 textarea {
 	border: 1px solid var( --color-bg-secondary );
 	border-radius: var( --border-radius );
-	margin-bottom: 1rem;
+	margin-block-end: 1rem;
 	padding: 0.4rem 0.8rem;
+}
+
+button:disabled,
+input:disabled {
+	background: var( --color-bg-secondary );
+	border-color: var( --color-bg-secondary );
+	color: var( --color-text-secondary );
+	cursor: not-allowed;
+}
+
+button[disabled]:hover {
+	filter: none;
 }
 
 input[readonly],
 textarea[readonly] {
 	background-color: var( --color-bg-secondary );
-}
-
-label {
-	font-weight: bold;
-	margin-bottom: 0.2rem;
 }
 
 /* Tables */
@@ -452,11 +326,11 @@ table thead {
 }
 
 table thead th:first-child {
-	border-top-left-radius: var( --border-radius );
+	border-start-start-radius: var( --border-radius );
 }
 
 table thead th:last-child {
-	border-top-right-radius: var( --border-radius );
+	border-start-end-radius: var( --border-radius );
 }
 
 table thead th:first-child,
@@ -466,6 +340,130 @@ table tr td:first-child {
 
 table tr:nth-child( even ) {
 	background-color: var( --color-accent );
+}
+
+/* Layout */
+body {
+	background: var( --color-bg );
+	color: var( --color-text );
+	font-family: var( --font-family-serif );
+	line-height: var( --line-height );
+	margin: 0;
+	overflow-x: hidden;
+	padding: 0;
+}
+
+ol li,
+ul li {
+	padding: 0.2rem 0;
+}
+
+section img,
+article img {
+	max-width: 100%;
+}
+
+section pre {
+	overflow: auto;
+}
+
+section aside {
+	border: 1px solid var( --color-bg-secondary );
+	border-radius: var( --border-radius );
+	box-shadow: var( --box-shadow ) var( --color-shadow );
+	margin: 1rem;
+	padding: 1.25rem;
+	width: var( --width-card );
+}
+
+article aside {
+	background: var( --color-secondary-accent );
+	border-inline-start: 4px solid var( --color-secondary );
+	padding: 0.01rem 0.8rem;
+}
+
+section aside:hover {
+	box-shadow: var( --box-shadow ) var( --color-bg-secondary );
+}
+
+/* Headers */
+article header,
+div header,
+main header {
+	padding-block-start: 0;
+}
+
+header a b,
+header a em,
+header a i,
+header a strong {
+	margin-inline: 0.5rem;
+}
+
+header nav img {
+	margin: 1rem 0;
+}
+
+section header {
+	padding-block-start: 0;
+	width: 100%;
+}
+
+/* Nav */
+nav {
+	align-items: center;
+	display: flex;
+	font-weight: 600;
+	justify-content: space-between;
+	margin-block-end: 7rem;
+}
+
+nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+nav ul li {
+	display: inline-block;
+	margin: 0 0.5rem;
+	position: relative;
+	text-align: start;
+}
+
+/* Nav Dropdown */
+nav ul li ul {
+	background: var( --color-bg );
+	border: 1px solid var( --color-bg-secondary );
+	border-radius: var( --border-radius );
+	box-shadow: var( --box-shadow ) var( --color-shadow );
+	display: none;
+	height: auto;
+	inset-inline-start: -2px;
+	padding: 0.5rem 1rem;
+	position: absolute;
+	inset-block-start: 1.7rem;
+	white-space: nowrap;
+	width: auto;
+	z-index: 1;
+}
+
+nav ul li:hover ul {
+	display: block;
+}
+
+nav ul li ul::before {
+	/* fill gap above to make mousing over them easier */
+	content: '';
+	position: absolute;
+	inset-inline: 0;
+	inset-block-start: -0.5rem;
+	height: 0.5rem;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+nav ul li ul li,
+nav ul li ul li a {
+	display: block;
 }
 
 /* Quotes */

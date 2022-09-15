@@ -21,6 +21,6 @@
 
 <style>
 	main:only-of-type {
-		padding-top: unset;
+		padding-block-start: unset;
 	}
 </style>
