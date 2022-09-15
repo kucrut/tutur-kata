@@ -4,10 +4,23 @@
 	"rules": {
 		"alpha-value-notation": "number",
 		"color-function-notation": "legacy",
+		"comment-empty-line-before": [
+			"always",
+			{
+				"except": [ "first-nested" ],
+				"ignore": [ "after-comment", "stylelint-commands" ]
+			}
+		],
 		"custom-property-empty-line-before": "never",
 		"function-parentheses-space-inside": "always-single-line",
 		"indentation": "tab",
 		"media-feature-parentheses-space-inside": "always",
+		"rule-empty-line-before": [
+			"always-multi-line",
+			{
+				"except": [ "after-single-line-comment", "first-nested" ]
+			}
+		],
 		"selector-class-pattern": [
 			"^([a-z][a-z0-9]*)([-_]{0,2}[a-z0-9]+)*$",
 			{
