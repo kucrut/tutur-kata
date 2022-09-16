@@ -1,3 +1,8 @@
+/**
+ * @typedef {import('wp-types').WP_REST_API_Post} Post
+ * @typedef {import('$types').wp_fetch} wp_fetch
+ */
+
 import { WP_FRONTPAGE_ID } from '$env/static/private';
 import { error } from '@sveltejs/kit';
 import { maybe_throw_wp_api_error } from '$lib/api/utils';
@@ -10,9 +15,9 @@ function frontpage_error() {
 /**
  * Fetch frontpage
  *
- * @param {import('$types').wp_fetch} wp_fetch WP fetch.
- * @param {number}                    id       Frontpage ID.
- * @return {Promise<import('wp-types').WP_REST_API_Post>} Post object.
+ * @param {wp_fetch} wp_fetch WP fetch.
+ * @param {number}   id       Frontpage ID.
+ * @return {Promise<Post>} Post object.
  */
 async function fetch_frontpage( wp_fetch, id ) {
 	try {
@@ -22,7 +27,7 @@ async function fetch_frontpage( wp_fetch, id ) {
 			throw await response.json();
 		}
 
-		/** @type {import('wp-types').WP_REST_API_Post} */
+		/** @type {Post} */
 		const post = await response.json();
 
 		return post;
