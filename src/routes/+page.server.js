@@ -1,6 +1,6 @@
 import { WP_FRONTPAGE_ID } from '$env/static/private';
 import { error } from '@sveltejs/kit';
-import { is_wp_rest_api_error } from '$lib/api/utils';
+import { maybe_throw_wp_api_error } from '$lib/api/utils';
 
 function frontpage_error() {
 	throw error( 500 );
@@ -27,17 +27,8 @@ async function fetch_frontpage( wp_fetch, id ) {
 
 		return post;
 	} catch ( err ) {
-		/** @type {import('wp-types').WP_REST_API_Error} */
-		let wp_api_error;
-
-		if ( is_wp_rest_api_error( err ) ) {
-			wp_api_error = err;
-			// @ts-expect-error TODO.
-			throw error( wp_api_error.data.status, wp_api_error.message );
-		}
-
-		// TODO.
-		throw err;
+		maybe_throw_wp_api_error( err );
+		throw err; // TODO.
 	}
 }
 

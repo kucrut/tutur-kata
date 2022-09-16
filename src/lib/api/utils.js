@@ -7,6 +7,8 @@
  * @typedef {(Favicon|TileImage)[]} Icons
  */
 
+import { error } from '@sveltejs/kit';
+
 /**
  * Check if passed object is a WP_REST_API_Error
  *
@@ -71,4 +73,20 @@ export async function generate_favicons( wp_fetch, site_icon_id ) {
 	}
 
 	return icons;
+}
+
+/**
+ * Throw error if the passed argument is a WP API Error
+ *
+ * @param {any} err Error object.
+ */
+export function maybe_throw_wp_api_error( err ) {
+	/** @type {WP_REST_API_Error} */
+	let wp_api_error;
+
+	if ( is_wp_rest_api_error( err ) ) {
+		wp_api_error = err;
+		// @ts-expect-error TODO.
+		throw error( wp_api_error.data.status, wp_api_error.message );
+	}
 }
