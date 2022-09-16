@@ -1,15 +1,15 @@
-import { PUBLIC_WP_FRONTPAGE_ID } from '$env/static/public';
+import { WP_FRONTPAGE_ID } from '$env/static/private';
 import { error } from '@sveltejs/kit';
 import { is_wp_rest_api_error } from '$lib/api/utils';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals } ) {
-	if ( ! PUBLIC_WP_FRONTPAGE_ID ) {
+	if ( ! WP_FRONTPAGE_ID ) {
 		throw error( 500 );
 		// TODO: Log.
 	}
 
-	const frontpage_id = Number( PUBLIC_WP_FRONTPAGE_ID );
+	const frontpage_id = Number( WP_FRONTPAGE_ID );
 
 	if ( isNaN( frontpage_id ) || frontpage_id < 1 ) {
 		throw error( 500 );
