@@ -2,18 +2,21 @@ import { WP_FRONTPAGE_ID } from '$env/static/private';
 import { error } from '@sveltejs/kit';
 import { is_wp_rest_api_error } from '$lib/api/utils';
 
+function frontpage_error() {
+	throw error( 500 );
+	// TODO: Log.
+}
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals } ) {
 	if ( ! WP_FRONTPAGE_ID ) {
-		throw error( 500 );
-		// TODO: Log.
+		frontpage_error();
 	}
 
 	const frontpage_id = Number( WP_FRONTPAGE_ID );
 
 	if ( isNaN( frontpage_id ) || frontpage_id < 1 ) {
-		throw error( 500 );
-		// TODO: Log.
+		frontpage_error();
 	}
 
 	const { wp_fetch } = locals;
