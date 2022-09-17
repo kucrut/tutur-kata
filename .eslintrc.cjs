@@ -16,7 +16,13 @@ module.exports = {
 		NodeJS: false,
 	},
 	overrides: [
-		{ files: [ '*.html', '*.svelte' ], processor: 'svelte3/svelte3' },
+		{
+			files: [ '*.html', '*.svelte' ],
+			processor: 'svelte3/svelte3',
+			rules: {
+				'no-undef-init': 'off',
+			},
+		},
 		{
 			files: [ '*.ts' ],
 			rules: {
