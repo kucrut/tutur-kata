@@ -11,6 +11,8 @@ export interface Favicon {
 	sizes: string;
 }
 
+export type PageType = 'frontpage' | 'blog_archive' | 'blog_single';
+
 export interface TileImage {
 	content: string;
 	name: string;
