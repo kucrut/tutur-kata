@@ -5,6 +5,8 @@
 	export let posts;
 	export let title = '';
 	export let title_tag = 'h2';
+
+	// TODO: Link post title to single post page.
 </script>
 
 {#if title}
