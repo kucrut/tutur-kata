@@ -1,11 +1,11 @@
 <script>
+	import Seo from '$lib/components/seo.svelte';
+
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
 
-<svelte:head>
-	<title>{data.title}</title>
-</svelte:head>
+<Seo {...data} />
 
 <article>
 	<h1>{data.post.title.rendered}</h1>
