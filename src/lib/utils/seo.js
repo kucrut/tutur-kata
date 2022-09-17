@@ -4,7 +4,7 @@
  * @typedef {import('$types').WP_Info} WP_Info
  */
 
-import simple_entity_decode from 'simple-entity-decode';
+import simple_entity_decode from '$lib/utils/simple-entity-decode';
 
 /**
  * Generate document title

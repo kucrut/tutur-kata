@@ -1,5 +1,5 @@
 <script>
-	import simple_entity_decode from 'simple-entity-decode';
+	import simple_entity_decode from '$lib/utils/simple-entity-decode';
 	import Seo from 'svelte-seo';
 
 	/** @type {import('./$types').PageData} */
