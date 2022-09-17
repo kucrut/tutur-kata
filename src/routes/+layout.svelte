@@ -6,7 +6,6 @@
 </script>
 
 <svelte:head>
-	<title>{data.wp_info.name}</title>
 	{#if data.favicons}
 		{#each data.favicons as attributes}
 			{@const  tag = 'rel' in attributes ? 'link' : 'meta' }
