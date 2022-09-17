@@ -16,6 +16,7 @@ specifiers:
   postcss-html: ^1.5.0
   prettier: npm:wp-prettier@^2.6.2
   prettier-plugin-svelte: ^2.7.0
+  simple-entity-decode: ^0.0.3
   stylelint: ^14.11.0
   stylelint-config-standard-scss: ^5.0.0
   stylelint-use-logical: ^2.0.0
@@ -41,6 +42,7 @@ devDependencies:
   postcss-html: 1.5.0
   prettier: /wp-prettier/2.6.2
   prettier-plugin-svelte: 2.7.0_wtzwxy5vjqz5hatprpnq42mciq
+  simple-entity-decode: 0.0.3
   stylelint: 14.11.0
   stylelint-config-standard-scss: 5.0.0_74u2qasxp5mudia6vln5kcfuni
   stylelint-use-logical: 2.0.0_stylelint@14.11.0
@@ -4663,6 +4665,10 @@ packages:
 
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+    dev: true
+
+  /simple-entity-decode/0.0.3:
+    resolution: {integrity: sha512-FTitmmei/+dtnk3BYzGKNJmIOwa9QRUEOewNogAUrDMZChSEA3NkS58nq5/AsgA4uZp3iJyKeF+QDfS5o3PTPg==}
     dev: true
 
   /sirv/2.0.2:
