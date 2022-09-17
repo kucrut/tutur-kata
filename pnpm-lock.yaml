@@ -21,6 +21,7 @@ specifiers:
   stylelint-use-logical: ^2.0.0
   svelte: ^3.44.0
   svelte-check: ^2.7.1
+  svelte-seo: ^1.4.1
   typescript: ^4.7.4
   vite: ^3.1.1
   wp-types: ^3.60.0
@@ -46,6 +47,7 @@ devDependencies:
   stylelint-use-logical: 2.0.0_stylelint@14.11.0
   svelte: 3.50.1
   svelte-check: 2.9.0_qbfojgnqqswg256rumyv2jlaia
+  svelte-seo: 1.4.1_typescript@4.8.3
   typescript: 4.8.3
   vite: 3.1.1
   wp-types: 3.60.0
@@ -4607,6 +4609,14 @@ packages:
       object-assign: 4.1.1
     dev: true
 
+  /schema-dts/0.8.3_typescript@4.8.3:
+    resolution: {integrity: sha512-GSLeVkUgEe8DzS8/FGWou1wlC8tQ1KXA5amCqCIH/psUzF74fWswtT0QFlSoJLT08CYyixnc3S/lkAm+RExoLQ==}
+    peerDependencies:
+      typescript: '>=3.4.0'
+    dependencies:
+      typescript: 4.8.3
+    dev: true
+
   /semver/5.7.1:
     resolution: {integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==}
     hasBin: true
@@ -5055,6 +5065,14 @@ packages:
       strip-indent: 3.0.0
       svelte: 3.50.1
       typescript: 4.8.3
+    dev: true
+
+  /svelte-seo/1.4.1_typescript@4.8.3:
+    resolution: {integrity: sha512-ud0vdQrAVvZHLFsYznimlKdxWC47GqYWgOBBTr3mYDPouBPQHYDazEFredmwUm5boVoMRffu/aOJ5Yj1xQQibA==}
+    dependencies:
+      schema-dts: 0.8.3_typescript@4.8.3
+    transitivePeerDependencies:
+      - typescript
     dev: true
 
   /svelte/3.50.1:

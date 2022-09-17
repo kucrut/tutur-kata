@@ -3,7 +3,7 @@
 	export let datetime;
 	// TODO: Get timezone from wp_info.timezone_string.
 	/** @type {string|undefined} */
-	export let time_zone;
+	export let time_zone = undefined;
 
 	const date = new Date( Date.parse( datetime ) );
 	const display = new Intl.DateTimeFormat( undefined, {

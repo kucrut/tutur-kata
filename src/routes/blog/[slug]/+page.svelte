@@ -1,6 +1,5 @@
 <script>
 	import simple_entity_decode from '$lib/utils/simple-entity-decode';
-	import PostsList from '$lib/components/posts-list.svelte';
 	import Seo from 'svelte-seo';
 
 	/** @type {import('./$types').PageData} */
@@ -10,10 +9,6 @@
 <Seo title={data.title} />
 
 <article>
-	<h1>{simple_entity_decode( data.wp_info.name )}</h1>
+	<h1>{simple_entity_decode( data.post.title.rendered )}</h1>
 	<div>{@html data.post.content.rendered}</div>
 </article>
-
-{#if data.latest_posts?.length}
-	<PostsList posts={data.latest_posts} title="Latest Posts" />
-{/if}
