@@ -6,7 +6,7 @@
 	export let data;
 </script>
 
-<Seo {...data} />
+<Seo title={data.title} />
 
 <article>
 	<h1>{data.post.title.rendered}</h1>
