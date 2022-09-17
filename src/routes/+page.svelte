@@ -1,7 +1,7 @@
 <script>
 	import simple_entity_decode from 'simple-entity-decode';
 	import PostsList from '$lib/components/posts-list.svelte';
-	import Seo from '$lib/components/seo.svelte';
+	import Seo from 'svelte-seo';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
