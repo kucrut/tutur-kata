@@ -5,8 +5,6 @@
 	export let posts;
 	export let title = '';
 	export let title_tag = 'h2';
-
-	// TODO: Link post title to single post page.
 </script>
 
 {#if title}
@@ -14,6 +12,6 @@
 {/if}
 <ul>
 	{#each posts as post}
-		<li><Time datetime={post.date} /> <span>{@html post.title.rendered}</span></li>
+		<li><Time datetime={post.date} /> <a href="/blog/{post.slug}">{@html post.title.rendered}</a></li>
 	{/each}
 </ul>
