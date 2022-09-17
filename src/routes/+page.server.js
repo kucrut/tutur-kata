@@ -37,6 +37,30 @@ async function fetch_frontpage( wp_fetch, id ) {
 	}
 }
 
+/**
+ * Fetch latest posts
+ *
+ * @param {wp_fetch} wp_fetch WP fetch.
+ * @return {Promise<Post[]>} Post object.
+ */
+async function fetch_latest_posts( wp_fetch ) {
+	try {
+		const response = await wp_fetch( '/wp/v2/posts?per_page=10' );
+
+		if ( ! response.ok ) {
+			throw await response.json();
+		}
+
+		/** @type {Post[]} */
+		const posts = await response.json();
+
+		return posts;
+	} catch ( err ) {
+		maybe_throw_wp_api_error( err );
+		throw err; // TODO.
+	}
+}
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals } ) {
 	if ( ! WP_FRONTPAGE_ID ) {
@@ -51,6 +75,7 @@ export async function load( { locals } ) {
 
 	const { wp_fetch } = locals;
 	const post = await fetch_frontpage( wp_fetch, frontpage_id );
+	const latest_posts = await fetch_latest_posts( wp_fetch );
 
-	return { post };
+	return { latest_posts, post };
 }
