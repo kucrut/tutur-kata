@@ -14,6 +14,14 @@
 	{/if}
 </svelte:head>
 
+<header class="site-header">
+	<nav class="container site-nav">
+		<span class="site-name">
+			<a href="/">{data.wp_info.name}</a>
+		</span>
+	</nav>
+</header>
+
 <main>
 	<slot />
 </main>
