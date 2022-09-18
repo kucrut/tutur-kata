@@ -16,7 +16,7 @@
 
 <header class="site-header">
 	<nav class="container site-nav">
-		<span class="site-name">
+		<span class="site-branding">
 			<a href="/">{data.wp_info.name}</a>
 		</span>
 	</nav>
