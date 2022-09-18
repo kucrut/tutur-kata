@@ -1,5 +1,5 @@
 <script>
-	import simple_entity_decode from '$lib/utils/simple-entity-decode';
+	import Article from '$lib/components/article.svelte';
 	import Seo from 'svelte-seo';
 
 	/** @type {import('./$types').PageData} */
@@ -8,7 +8,6 @@
 
 <Seo title={data.title} />
 
-<article>
-	<h1>{simple_entity_decode( data.post.title.rendered )}</h1>
-	<div>{@html data.post.content.rendered}</div>
-</article>
+<div class="container">
+	<Article post={data.post} />
+</div>
