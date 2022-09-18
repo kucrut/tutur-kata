@@ -1,8 +1,6 @@
 <script>
 	/** @type {import('./$types').LayoutData} */
 	export let data;
-
-	import '../app.css';
 </script>
 
 <svelte:head>
@@ -17,9 +15,3 @@
 <main>
 	<slot />
 </main>
-
-<style>
-	main:only-of-type {
-		padding-block-start: unset;
-	}
-</style>
