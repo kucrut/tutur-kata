@@ -9,11 +9,13 @@
 
 <Seo title={data.title} />
 
-<article>
-	<h1>{simple_entity_decode( data.wp_info.name )}</h1>
-	<div>{@html data.post.content.rendered}</div>
-</article>
+<div class="container">
+	<article>
+		<h1>{simple_entity_decode( data.wp_info.name )}</h1>
+		<div>{@html data.post.content.rendered}</div>
+	</article>
 
-{#if data.latest_posts?.length}
-	<PostsList posts={data.latest_posts} title="Latest Posts" />
-{/if}
+	{#if data.latest_posts?.length}
+		<PostsList posts={data.latest_posts} title="Latest Posts" />
+	{/if}
+</div>

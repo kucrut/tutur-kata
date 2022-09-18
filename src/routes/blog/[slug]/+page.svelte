@@ -8,7 +8,9 @@
 
 <Seo title={data.title} />
 
-<article>
-	<h1>{simple_entity_decode( data.post.title.rendered )}</h1>
-	<div>{@html data.post.content.rendered}</div>
-</article>
+<div class="container">
+	<article>
+		<h1>{simple_entity_decode( data.post.title.rendered )}</h1>
+		<div>{@html data.post.content.rendered}</div>
+	</article>
+</div>
