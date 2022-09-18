@@ -15,3 +15,21 @@ body {
 	margin-inline: auto;
 	max-width: 800px;
 }
+
+/**
+ * Components
+ */
+
+.site-name {
+	font-size: 1.5rem;
+
+	a {
+		text-decoration: unset;
+		color: inherit;
+
+		&:focus,
+		&:hover {
+			text-decoration: revert;
+		}
+	}
+}
