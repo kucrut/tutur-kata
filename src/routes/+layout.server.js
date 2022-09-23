@@ -1,4 +1,4 @@
-import { generate_favicons } from '$lib/api/utils';
+import { generate_favicons } from '$lib/api/utils.server';
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load( { locals } ) {
