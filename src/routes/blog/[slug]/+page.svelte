@@ -11,7 +11,7 @@
 
 <div class="container">
 	<Article post={data.post} terms={data.terms}>
-		<svelte:fragment slot="after-content" let:terms>
+		<svelte:fragment slot="before-content" let:terms>
 			{#if terms?.length}
 				{#each terms as post_terms}
 					<TermsList taxonomy={post_terms.taxonomy} terms={post_terms.terms} />
