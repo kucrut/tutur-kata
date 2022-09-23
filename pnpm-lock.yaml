@@ -15,6 +15,7 @@ specifiers:
   eslint-plugin-svelte3: ^4.0.0
   highlight.js: ^11.6.0
   postcss: ^8.4.16
+  postcss-custom-media: ^8.0.2
   postcss-html: ^1.5.0
   postcss-import: ^15.0.0
   postcss-nested: ^5.0.6
@@ -47,6 +48,7 @@ devDependencies:
   eslint-plugin-svelte3: 4.0.0_rhh4tpcyg7zwtq6pdnkzw5gxma
   highlight.js: 11.6.0
   postcss: 8.4.16
+  postcss-custom-media: 8.0.2_postcss@8.4.16
   postcss-html: 1.5.0
   postcss-import: 15.0.0_postcss@8.4.16
   postcss-nested: 5.0.6_postcss@8.4.16
@@ -4451,6 +4453,16 @@ packages:
     resolution: {integrity: sha512-p8huU8eU4gD3VkJd3DA1nA7R3XA6rFvFL+1RYS96cSljCF2yJE9CWEHTPF4LqX8KN9MoWCrAfVKP5381X3CZqg==}
     engines: {node: '>=14'}
     hasBin: true
+    dev: true
+
+  /postcss-custom-media/8.0.2_postcss@8.4.16:
+    resolution: {integrity: sha512-7yi25vDAoHAkbhAzX9dHx2yc6ntS4jQvejrNcC+csQJAXjj15e7VcWfMgLqBNAbOvqi5uIa9huOVwdHbf+sKqg==}
+    engines: {node: ^12 || ^14 || >=16}
+    peerDependencies:
+      postcss: ^8.3
+    dependencies:
+      postcss: 8.4.16
+      postcss-value-parser: 4.2.0
     dev: true
 
   /postcss-html/1.5.0:
