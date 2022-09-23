@@ -3,6 +3,7 @@
  */
 
 import { error } from '@sveltejs/kit';
+import { fetch_post_terms } from '$lib/api/utils.server';
 import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { generate_doc_title } from '$lib/utils/seo';
 import { process_post_data } from '$lib/utils/post';
@@ -28,8 +29,9 @@ export async function load( { locals, params } ) {
 		const [ post ] = data;
 
 		return {
-			title: generate_doc_title( locals.wp_info, 'blog_single', post ),
 			post: await process_post_data( post ),
+			terms: await fetch_post_terms( wp_fetch, post ),
+			title: generate_doc_title( locals.wp_info, 'blog_single', post ),
 		};
 	} catch ( err ) {
 		maybe_throw_wp_api_error( err );
