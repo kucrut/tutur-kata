@@ -10,7 +10,7 @@
 	export let post;
 	export let show_title = true;
 	/** @type {import('$lib/api/utils.server').Post_Terms[]|null} */
-	export let terms;
+	export let terms = null;
 	export let title_class = '';
 	export let title_tag = 'h1';
 </script>
