@@ -3,7 +3,11 @@
  * @typedef {import('$types').Favicon} Favicon
  * @typedef {import('$types').TileImage} TileImage
  * @typedef {import('$types').WP_REST_API_Media} WP_REST_API_Media
+ * @typedef {import('wp-types').WP_REST_API_Post} Post
+ * @typedef {import('wp-types').WP_REST_API_Term} Term
+ * @typedef {import('wp-types').WP_REST_API_Taxonomy} Taxonomy
  * @typedef {(Favicon|TileImage)[]} Icons
+ * @typedef {{taxonomy: Taxonomy, terms: Term[]}} Post_Terms
  */
 
 /**
@@ -52,4 +56,44 @@ export async function generate_favicons( wp_fetch, site_icon_id ) {
 	}
 
 	return icons;
+}
+
+/**
+ * Fetch post terms
+ *
+ * @param {wp_fetch} wp_fetch WP API fetcher.
+ * @param {Post}     post     Post object.
+ * @return {Promise<Post_Terms[]|null>} Array of favicons and tile images or null.
+ */
+export async function fetch_post_terms( wp_fetch, post ) {
+	const taxonomies = post._links[ 'wp:term' ];
+
+	if ( ! ( Array.isArray( taxonomies ) && taxonomies.length ) ) {
+		return null;
+	}
+
+	/** @type {Post_Terms[]} */
+	const result = [];
+
+	for ( const tax of taxonomies ) {
+		try {
+			const response = await wp_fetch( tax.href );
+			/** @type {Term[]} */
+			const terms = await response.json();
+
+			if ( ! terms.length ) {
+				continue;
+			}
+
+			const tax_response = await wp_fetch( terms[ 0 ]._links.about[ 0 ].href );
+			/** @type {Taxonomy} */
+			const taxonomy = await tax_response.json();
+
+			result.push( { taxonomy, terms } );
+		} catch ( error ) {
+			// TODO: Log?
+		}
+	}
+
+	return result;
 }
