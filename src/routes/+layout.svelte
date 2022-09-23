@@ -1,5 +1,5 @@
 <script>
-	import '../app.postcss';
+	import '../styles/index.postcss';
 
 	/** @type {import('./$types').LayoutData} */
 	export let data;
