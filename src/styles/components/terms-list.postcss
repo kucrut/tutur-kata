@@ -1,0 +1,12 @@
+.terms-list {
+	list-style: none;
+	padding: unset;
+
+	li {
+		display: inline;
+
+		&:not( :last-child )::after {
+			content: ', ';
+		}
+	}
+}
