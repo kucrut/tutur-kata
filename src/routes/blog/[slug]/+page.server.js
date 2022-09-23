@@ -5,6 +5,7 @@
 import { error } from '@sveltejs/kit';
 import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { generate_doc_title } from '$lib/utils/seo';
+import { process_post_data } from '$lib/utils/post';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals, params } ) {
@@ -27,8 +28,8 @@ export async function load( { locals, params } ) {
 		const [ post ] = data;
 
 		return {
-			post,
 			title: generate_doc_title( locals.wp_info, 'blog_single', post ),
+			post: await process_post_data( post ),
 		};
 	} catch ( err ) {
 		maybe_throw_wp_api_error( err );
