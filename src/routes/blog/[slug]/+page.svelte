@@ -9,5 +9,5 @@
 <Seo title={data.title} />
 
 <div class="container">
-	<Article post={data.post} />
+	<Article post={data.post} terms={data.terms} />
 </div>
