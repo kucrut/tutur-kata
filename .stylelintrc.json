@@ -3,6 +3,12 @@
 	"plugins": [ "stylelint-use-logical" ],
 	"rules": {
 		"alpha-value-notation": "number",
+		"at-rule-empty-line-before": [
+			"never",
+			{
+				"ignore": [ "first-nested", "inside-block" ]
+			}
+		],
 		"color-function-notation": "legacy",
 		"comment-empty-line-before": [
 			"always",
@@ -18,7 +24,7 @@
 		"rule-empty-line-before": [
 			"always-multi-line",
 			{
-				"except": [ "after-single-line-comment", "first-nested" ]
+				"ignore": [ "after-comment", "first-nested" ]
 			}
 		],
 		"selector-class-pattern": [
