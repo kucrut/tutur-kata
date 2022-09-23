@@ -13,12 +13,6 @@
 	"plugins": [ "./node_modules/prettier-plugin-svelte", "./node_modules/eslint-plugin-prettier" ],
 	"overrides": [
 		{
-			"files": [ "*.{css,postcss,scss}" ],
-			"options": {
-				"singleQuote": false
-			}
-		},
-		{
 			"files": [ "*.yaml", "*.yml" ],
 			"options": {
 				"singleQuote": false,
