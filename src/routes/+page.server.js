@@ -5,8 +5,9 @@
 
 import { WP_FRONTPAGE_ID } from '$env/static/private';
 import { error } from '@sveltejs/kit';
-import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { generate_doc_title } from '$lib/utils/seo';
+import { maybe_throw_wp_api_error } from '$lib/api/utils';
+import { process_post_data } from '$lib/utils/post';
 
 function frontpage_error() {
 	throw error( 500 );
@@ -80,7 +81,7 @@ export async function load( { locals } ) {
 
 	return {
 		latest_posts,
-		post,
+		post: await process_post_data( post ),
 		title: generate_doc_title( locals.wp_info, 'frontpage' ),
 	};
 }
