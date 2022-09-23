@@ -10,13 +10,15 @@
 	export let terms;
 
 	// TODO: Accept item_component prop.
+
+	$: classes = `terms-list ${ cls }`.trim();
 </script>
 
 <slot name="before-list" {taxonomy} {terms} />
 
 <ul
 	aria-label={simple_entity_decode( taxonomy.name )}
-	class="terms-list {cls}"
+	class={classes}
 	data-hierarchical={taxonomy.hierarchical}
 	data-taxonomy={taxonomy.slug}
 >
