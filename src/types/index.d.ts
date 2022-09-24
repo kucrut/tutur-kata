@@ -27,12 +27,12 @@ export interface WP_Info {
 	url: string;
 }
 
-export type WP_Page_Type = 'frontpage' | 'blog_archive' | 'blog_single';
+export type WP_Page_Type = 'frontpage' | 'home' | 'archive' | 'single';
 
 export interface WP_Page_Object {
 	description?: string;
 	page_num?: number;
-	title: string;
+	title?: string;
 	type: WP_Page_Type;
 }
 
