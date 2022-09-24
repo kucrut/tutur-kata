@@ -30,7 +30,7 @@ const NAMED_ENTITIES = {
  * @param {string} text Text to decode.
  * @return {string} Text with decoded entities.
  */
-export default function decode_entities( text ) {
+export function decode_entities( text ) {
 	return text.replace( ENTITY_REGEX, ( _, decimal, hex, named ) => {
 		if ( named ) {
 			// @ts-expect-error TODO (It should be fine though).

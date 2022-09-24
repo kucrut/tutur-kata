@@ -2,8 +2,8 @@
  * @typedef {import('wp-types').WP_REST_API_Post} Post
  */
 
+import { decode_entities } from '$lib/utils/simple-entity-decode';
 import { highlight } from '$lib/utils/highlight';
-import simple_entity_decode from '$lib/utils/simple-entity-decode';
 
 /**
  * Process WP post data
@@ -23,7 +23,7 @@ export async function process_post_data( post ) {
 		},
 		title: {
 			...title,
-			rendered: simple_entity_decode( title.rendered ),
+			rendered: decode_entities( title.rendered ),
 		},
 	};
 }
