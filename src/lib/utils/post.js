@@ -3,6 +3,7 @@
  */
 
 import { highlight } from '$lib/utils/highlight';
+import simple_entity_decode from '$lib/utils/simple-entity-decode';
 
 /**
  * Process WP post data
@@ -12,11 +13,17 @@ import { highlight } from '$lib/utils/highlight';
  * @return {Promise<Post>} Processed WP post object.
  */
 export async function process_post_data( post ) {
+	const { content, title } = post;
+
 	return {
 		...post,
 		content: {
-			...post.content,
-			rendered: await highlight( post.content.rendered ),
+			...content,
+			rendered: await highlight( content.rendered ),
+		},
+		title: {
+			...title,
+			rendered: simple_entity_decode( title.rendered ),
 		},
 	};
 }
