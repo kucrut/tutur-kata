@@ -10,6 +10,9 @@
  * @typedef {{taxonomy: Taxonomy, terms: Term[]}} Post_Terms
  */
 
+import { process_taxonomy } from '$lib/utils/taxonomy';
+import { process_term } from '$lib/utils/term';
+
 /**
  * Generate favicons
  *
@@ -89,7 +92,10 @@ export async function fetch_post_terms( wp_fetch, post ) {
 			/** @type {Taxonomy} */
 			const taxonomy = await tax_response.json();
 
-			result.push( { taxonomy, terms } );
+			result.push( {
+				taxonomy: process_taxonomy( taxonomy ),
+				terms: terms.map( process_term ),
+			} );
 		} catch ( error ) {
 			// TODO: Log?
 		}

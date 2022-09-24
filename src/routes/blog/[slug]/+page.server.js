@@ -20,18 +20,19 @@ export async function load( { locals, params } ) {
 		}
 
 		/** @type {Post[]} */
-		const data = await response.json();
+		const posts = await response.json();
 
-		if ( ! data.length ) {
+		if ( ! posts.length ) {
 			throw error( 404, 'Not found.' );
 		}
 
-		const [ post ] = data;
+		const [ post ] = posts;
+		const processed_post = await process_post_data( post );
 
 		return {
-			post: await process_post_data( post ),
-			terms: await fetch_post_terms( wp_fetch, post ),
-			title: generate_doc_title( locals.wp_info, 'blog_single', post ),
+			post: processed_post,
+			terms: await fetch_post_terms( wp_fetch, processed_post ),
+			title: generate_doc_title( locals.wp_info, 'blog_single', processed_post ),
 		};
 	} catch ( err ) {
 		maybe_throw_wp_api_error( err );
