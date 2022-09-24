@@ -1,6 +1,4 @@
 <script>
-	import { decode_entities } from '$lib/utils/simple-entity-decode';
-
 	let cls = '';
 
 	export { cls as class };
@@ -16,14 +14,9 @@
 
 <slot name="before-list" {taxonomy} {terms} />
 
-<ul
-	aria-label={decode_entities( taxonomy.name )}
-	class={classes}
-	data-hierarchical={taxonomy.hierarchical}
-	data-taxonomy={taxonomy.slug}
->
+<ul aria-label={taxonomy.name} class={classes} data-hierarchical={taxonomy.hierarchical} data-taxonomy={taxonomy.slug}>
 	{#each terms as term}
-		<li>{decode_entities( term.name )}</li>
+		<li>{term.name}</li>
 	{/each}
 </ul>
 
