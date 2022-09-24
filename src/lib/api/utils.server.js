@@ -10,6 +10,7 @@
  * @typedef {{taxonomy: Taxonomy, terms: Term[]}} Post_Terms
  */
 
+import { process_taxonomy } from '$lib/utils/taxonomy';
 import { process_term } from '$lib/utils/term';
 
 /**
@@ -92,7 +93,7 @@ export async function fetch_post_terms( wp_fetch, post ) {
 			const taxonomy = await tax_response.json();
 
 			result.push( {
-				taxonomy,
+				taxonomy: process_taxonomy( taxonomy ),
 				terms: terms.map( process_term ),
 			} );
 		} catch ( error ) {
