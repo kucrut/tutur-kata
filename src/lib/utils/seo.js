@@ -4,8 +4,6 @@
  * @typedef {import('$types').WP_Info} WP_Info
  */
 
-import { decode_entities } from '$lib/utils/simple-entity-decode';
-
 /**
  * Generate document title
  *
@@ -13,6 +11,7 @@ import { decode_entities } from '$lib/utils/simple-entity-decode';
  * @param {PageType}  page_type Page type.
  * @param {Post|null} data      Post object.
  * @param {string}    separator Separator.
+ *
  * @return {string} Document title.
  */
 export function generate_doc_title( wp_info, page_type, data = null, separator = '·' ) {
@@ -24,5 +23,5 @@ export function generate_doc_title( wp_info, page_type, data = null, separator =
 		throw Error( 'Invalid data.' );
 	}
 
-	return decode_entities( `${ data.title.rendered } ${ separator } ${ wp_info.name }` );
+	return `${ data.title.rendered } ${ separator } ${ wp_info.name }`;
 }
