@@ -29,6 +29,13 @@ export interface WP_Info {
 
 export type WP_Page_Type = 'frontpage' | 'blog_archive' | 'blog_single';
 
+export interface WP_Page_Object {
+	description?: string;
+	page_num?: number;
+	title: string;
+	type: WP_Page_Type;
+}
+
 export type WP_Media_Orientation = 'landscape' | 'portrait';
 
 export interface WP_Media_Size {
