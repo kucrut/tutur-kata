@@ -9,7 +9,7 @@ import { decode_entities } from '$lib/utils/simple-entity-decode';
  * @param {string} path REST API path.
  * @return {string} Generated REST URL.
  */
-function generate_rest_url( root, path ) {
+export function generate_rest_url( root, path ) {
 	if ( ! path.startsWith( '/' ) ) {
 		return path;
 	}
