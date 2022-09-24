@@ -32,7 +32,11 @@ export async function load( { locals, params } ) {
 		return {
 			post: processed_post,
 			terms: await fetch_post_terms( wp_fetch, processed_post ),
-			title: generate_doc_title( locals.wp_info, 'blog_single', processed_post ),
+			title: generate_doc_title( locals.wp_info, {
+				title: processed_post.title.rendered,
+				type: 'single',
+				// TODO: Add description.
+			} ),
 		};
 	} catch ( err ) {
 		maybe_throw_wp_api_error( err );
