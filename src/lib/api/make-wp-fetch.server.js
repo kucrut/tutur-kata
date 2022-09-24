@@ -1,6 +1,7 @@
 /** @typedef {import('@sveltejs/kit').Handle} Handle */
 
 import { decode_entities } from '$lib/utils/simple-entity-decode';
+import { WP_API_APP_AUTH, WP_API_ROOT_URL } from '$env/static/private';
 
 /**
  * Generate REST URL
@@ -80,3 +81,9 @@ export function make_wp_fetch( config ) {
 		return await resolve( event );
 	};
 }
+
+export const wp_fetch = make_wp_fetch( {
+	add_info: true,
+	app_auth: WP_API_APP_AUTH,
+	root: WP_API_ROOT_URL,
+} );
