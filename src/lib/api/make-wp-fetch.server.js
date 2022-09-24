@@ -1,5 +1,7 @@
 /** @typedef {import('@sveltejs/kit').Handle} Handle */
 
+import { decode_entities } from '$lib/utils/simple-entity-decode';
+
 /**
  * Generate REST URL
  *
@@ -56,14 +58,14 @@ export function make_wp_fetch( config ) {
 		const { description, gmt_offset, home, name, site_icon, site_logo, timezone_string, url } = await response.json();
 
 		return {
-			description,
 			gmt_offset,
 			home,
-			name,
 			site_icon,
 			site_logo,
 			timezone_string,
 			url,
+			description: decode_entities( description ),
+			name: decode_entities( name ),
 		};
 	}
 
