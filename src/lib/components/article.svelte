@@ -1,6 +1,4 @@
 <script>
-	import simple_entity_decode from '$lib/utils/simple-entity-decode';
-
 	let cls = '';
 
 	export { cls as class };
@@ -21,9 +19,9 @@
 	{#if show_title}
 		<svelte:element this={title_tag} class={title_class || null}>
 			{#if link_title}
-				<a href="/blog/{post.slug}">{simple_entity_decode( post.title.rendered )}</a>
+				<a href="/blog/{post.slug}">{post.title.rendered}</a>
 			{:else}
-				{simple_entity_decode( post.title.rendered )}
+				{post.title.rendered}
 			{/if}
 		</svelte:element>
 	{/if}
