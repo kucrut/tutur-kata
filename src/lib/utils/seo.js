@@ -1,6 +1,6 @@
 /**
  * @typedef {import('wp-types').WP_REST_API_Post} Post
- * @typedef {import('$types').PageType} PageType
+ * @typedef {import('$types').WP_Page_Type} WP_Page_Type
  * @typedef {import('$types').WP_Info} WP_Info
  */
 
@@ -8,7 +8,7 @@
  * Generate document title
  *
  * @param {WP_Info}   wp_info   WordPress site info.
- * @param {PageType}  page_type Page type.
+ * @param {WP_Page_Type}  page_type Page type.
  * @param {Post|null} data      Post object.
  * @param {string}    separator Separator.
  *
