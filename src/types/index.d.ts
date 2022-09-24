@@ -11,8 +11,6 @@ export interface Favicon {
 	sizes: string;
 }
 
-export type PageType = 'frontpage' | 'blog_archive' | 'blog_single';
-
 export interface TileImage {
 	content: string;
 	name: string;
@@ -27,6 +25,15 @@ export interface WP_Info {
 	site_logo: number;
 	timezone_string: string;
 	url: string;
+}
+
+export type WP_Page_Type = 'frontpage' | 'home' | 'archive' | 'single';
+
+export interface WP_Page_Object {
+	description?: string;
+	page_num?: number;
+	title?: string;
+	type: WP_Page_Type;
 }
 
 export type WP_Media_Orientation = 'landscape' | 'portrait';

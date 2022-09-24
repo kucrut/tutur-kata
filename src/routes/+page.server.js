@@ -82,6 +82,6 @@ export async function load( { locals } ) {
 	return {
 		latest_posts,
 		post: await process_post_data( post ),
-		title: generate_doc_title( locals.wp_info, 'frontpage' ),
+		title: generate_doc_title( locals.wp_info, { type: 'frontpage' } ),
 	};
 }
