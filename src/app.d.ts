@@ -6,7 +6,6 @@
 declare namespace App {
 	// interface Error {}
 	interface Locals {
-		wp_fetch: import('$types').wp_fetch;
 		wp_info: import('$types').WP_Info;
 	}
 	// interface PageData {}
