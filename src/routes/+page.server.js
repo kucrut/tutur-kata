@@ -1,13 +1,11 @@
-/**
- * @typedef {import('wp-types').WP_REST_API_Post} Post
- * @typedef {import('$types').wp_fetch} wp_fetch
- */
+/** @typedef {import('wp-types').WP_REST_API_Post} Post */
 
 import { WP_FRONTPAGE_ID } from '$env/static/private';
 import { error } from '@sveltejs/kit';
 import { generate_doc_title } from '$lib/utils/seo';
 import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { process_post_data } from '$lib/utils/post';
+import { wp_fetch } from '$lib/api/wp-fetch.server';
 
 function frontpage_error() {
 	throw error( 500 );
@@ -17,11 +15,11 @@ function frontpage_error() {
 /**
  * Fetch frontpage
  *
- * @param {wp_fetch} wp_fetch WP fetch.
- * @param {number}   id       Frontpage ID.
+ * @param {number} id Frontpage ID.
+ *
  * @return {Promise<Post>} Post object.
  */
-async function fetch_frontpage( wp_fetch, id ) {
+async function fetch_frontpage( id ) {
 	try {
 		const response = await wp_fetch( `/wp/v2/pages/${ id }` );
 
@@ -42,10 +40,9 @@ async function fetch_frontpage( wp_fetch, id ) {
 /**
  * Fetch latest posts
  *
- * @param {wp_fetch} wp_fetch WP fetch.
  * @return {Promise<Post[]>} Post object.
  */
-async function fetch_latest_posts( wp_fetch ) {
+async function fetch_latest_posts() {
 	try {
 		const response = await wp_fetch( '/wp/v2/posts?per_page=10' );
 
@@ -75,9 +72,8 @@ export async function load( { locals } ) {
 		frontpage_error();
 	}
 
-	const { wp_fetch } = locals;
-	const post = await fetch_frontpage( wp_fetch, frontpage_id );
-	const latest_posts = await fetch_latest_posts( wp_fetch );
+	const post = await fetch_frontpage( frontpage_id );
+	const latest_posts = await fetch_latest_posts();
 
 	return {
 		latest_posts,

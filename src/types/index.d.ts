@@ -3,8 +3,6 @@ import type { WP_REST_API_Attachment as Attachment } from 'wp-types';
 // See https://stackoverflow.com/a/54827898
 export type BetterOmit< T, K extends PropertyKey > = { [ P in keyof T as Exclude< P, K > ]: T[ P ] };
 
-export type wp_fetch = ( path: string, options?: RequestInit ) => Promise< Response >;
-
 export interface Favicon {
 	href: string;
 	rel: 'apple-touch-icon' | 'icon';

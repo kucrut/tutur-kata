@@ -61,5 +61,12 @@ module.exports = {
 				asyncArrow: 'always',
 			},
 		],
+		// Plugins
+		'jsdoc/no-undefined-types': [
+			'error',
+			{
+				definedTypes: [ 'RequestInit' ],
+			},
+		],
 	},
 };
