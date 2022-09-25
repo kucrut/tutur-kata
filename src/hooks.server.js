@@ -1,5 +1,13 @@
-import { sequence } from '@sveltejs/kit/hooks';
-import { make_wp_fetch } from './lib/api/wp-fetch.server';
-import { WP_API_APP_AUTH, WP_API_ROOT_URL } from '$env/static/private';
+/** @typedef {import('@sveltejs/kit').Handle} Handle */
 
-export const handle = sequence( make_wp_fetch( { add_info: true, app_auth: WP_API_APP_AUTH, root: WP_API_ROOT_URL } ) );
+import { get_info } from '$lib/api/utils.server';
+import { sequence } from '@sveltejs/kit/hooks';
+
+/** @type {Handle} */
+async function add_info( { event, resolve } ) {
+	event.locals.wp_info = await get_info();
+
+	return await resolve( event );
+}
+
+export const handle = sequence( add_info );

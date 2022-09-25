@@ -1,5 +1,4 @@
 /**
- * @typedef {import('$types').wp_fetch} wp_fetch
  * @typedef {import('$types').Favicon} Favicon
  * @typedef {import('$types').TileImage} TileImage
  * @typedef {import('$types').WP_REST_API_Media} WP_REST_API_Media
@@ -10,17 +9,18 @@
  * @typedef {{taxonomy: Taxonomy, terms: Term[]}} Post_Terms
  */
 
+import { decode_entities } from '$lib/utils/simple-entity-decode';
 import { process_taxonomy } from '$lib/utils/taxonomy';
 import { process_term } from '$lib/utils/term';
+import { wp_fetch } from './wp-fetch.server';
 
 /**
  * Generate favicons
  *
- * @param {wp_fetch} wp_fetch     WP API fetcher.
- * @param {number}   site_icon_id Site icon attachment ID.
+ * @param {number} site_icon_id Site icon attachment ID.
  * @return {Promise<Icons|null>} Array of favicons and tile images or null.
  */
-export async function generate_favicons( wp_fetch, site_icon_id ) {
+export async function generate_favicons( site_icon_id ) {
 	if ( site_icon_id <= 0 ) {
 		return null;
 	}
@@ -62,13 +62,34 @@ export async function generate_favicons( wp_fetch, site_icon_id ) {
 }
 
 /**
+ * Get WordPress site info
+ *
+ * @return {Promise<import('$types').WP_Info>} Site info.
+ */
+export async function get_info() {
+	const response = await wp_fetch( '/' );
+	const { description, gmt_offset, home, name, site_icon, site_logo, timezone_string, url } = await response.json();
+
+	return {
+		gmt_offset,
+		home,
+		site_icon,
+		site_logo,
+		timezone_string,
+		url,
+		description: decode_entities( description ),
+		name: decode_entities( name ),
+	};
+}
+
+/**
  * Fetch post terms
  *
- * @param {wp_fetch} wp_fetch WP API fetcher.
- * @param {Post}     post     Post object.
+ * @param {Post} post Post object.
+ *
  * @return {Promise<Post_Terms[]|null>} Array of favicons and tile images or null.
  */
-export async function fetch_post_terms( wp_fetch, post ) {
+export async function fetch_post_terms( post ) {
 	const taxonomies = post._links[ 'wp:term' ];
 
 	if ( ! ( Array.isArray( taxonomies ) && taxonomies.length ) ) {
