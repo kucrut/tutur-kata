@@ -62,11 +62,11 @@ export async function generate_favicons( site_icon_id ) {
 }
 
 /**
- * Get WordPress site info
+ * Fetch WordPress site info
  *
  * @return {Promise<import('$types').WP_Info>} Site info.
  */
-export async function get_info() {
+export async function fetch_info() {
 	const response = await wp_fetch( '/' );
 	const { description, gmt_offset, home, name, site_icon, site_logo, timezone_string, url } = await response.json();
 
