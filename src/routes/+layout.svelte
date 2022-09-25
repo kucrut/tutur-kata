@@ -1,9 +1,13 @@
 <script>
+	import { page } from '$app/stores';
+	import Seo from 'svelte-seo';
 	import '../styles/index.postcss';
 
 	/** @type {import('./$types').LayoutData} */
 	export let data;
 </script>
+
+<Seo title={$page.data.title} />
 
 <svelte:head>
 	{#if data.favicons}
