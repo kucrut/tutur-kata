@@ -1,22 +1,10 @@
 <script>
+	import { get_taxonomy_icon } from '$lib/utils/icons';
 	import Article from '$lib/components/article.svelte';
 	import TermsList from '$lib/components/terms-list.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
-
-	/**
-	 * Get icon
-	 *
-	 * @param {import('wp-types').WP_REST_API_Taxonomy} taxonomy
-	 */
-	function get_icon( taxonomy ) {
-		if ( taxonomy.rest_base === 'categories' ) {
-			return 'folders';
-		}
-
-		return 'tags';
-	}
 </script>
 
 <div class="container">
@@ -24,7 +12,7 @@
 		<svelte:fragment slot="before-content" let:terms>
 			{#if terms?.length}
 				{#each terms as post_terms}
-					{@const  icon = get_icon( post_terms.taxonomy ) }
+					{@const  icon = get_taxonomy_icon( post_terms.taxonomy ) }
 					<TermsList
 						class="terms-list has-icon--before has-icon:{icon}"
 						taxonomy={post_terms.taxonomy}
