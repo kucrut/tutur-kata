@@ -1,4 +1,4 @@
-import type { WP_REST_API_Attachment as Attachment } from 'wp-types';
+import type { WP_REST_API_Attachment as Attachment, WP_REST_API_Taxonomy } from 'wp-types';
 
 // See https://stackoverflow.com/a/54827898
 export type BetterOmit< T, K extends PropertyKey > = { [ P in keyof T as Exclude< P, K > ]: T[ P ] };
@@ -30,6 +30,7 @@ export type WP_Page_Type = 'frontpage' | 'home' | 'archive' | 'single' | 'term_a
 export interface WP_Page_Object {
 	description?: string;
 	page_num?: number;
+	taxonomy?: WP_REST_API_Taxonomy;
 	title?: string;
 	type: WP_Page_Type;
 }
