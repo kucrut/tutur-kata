@@ -11,7 +11,7 @@ import { decode_entities } from '$lib/utils/simple-entity-decode';
  *
  * @return {Term} Processed WP term object.
  */
-export function process_term( term ) {
+export function process_term_data( term ) {
 	return {
 		...term,
 		description: decode_entities( term.description ),

@@ -11,7 +11,7 @@ import { decode_entities } from '$lib/utils/simple-entity-decode';
  *
  * @return {Taxonomy} Processed WP taxonomy object.
  */
-export function process_taxonomy( taxonomy ) {
+export function process_taxonomy_data( taxonomy ) {
 	return {
 		...taxonomy,
 		description: decode_entities( taxonomy.description ),
