@@ -30,7 +30,7 @@ export async function load( { locals, params } ) {
 		const taxonomy_raw = await tax_response.json();
 		const taxonomy = process_taxonomy( taxonomy_raw );
 
-		const posts_response = await wp_fetch( `/wp/v2/posts?${ params.taxonomy }=${ term.id }` );
+		const posts_response = await wp_fetch( `/wp/v2/posts?${ taxonomy.rest_base }=${ term.id }` );
 
 		if ( ! posts_response.ok ) {
 			throw await posts_response.json();
