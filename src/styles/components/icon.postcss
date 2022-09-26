@@ -1,0 +1,13 @@
+.has-icon {
+	&--before::before,
+	&--after::after {
+		content: '';
+		mask: var( --un-icon ) no-repeat;
+		mask-size: 100% 100%;
+		-webkit-mask: var( --un-icon ) no-repeat;
+		-webkit-mask-size: 100% 100%;
+		background-color: currentColor;
+		width: 1.2em;
+		height: 1.2em;
+	}
+}
