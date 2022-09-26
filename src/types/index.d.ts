@@ -25,7 +25,7 @@ export interface WP_Info {
 	url: string;
 }
 
-export type WP_Page_Type = 'frontpage' | 'home' | 'archive' | 'single';
+export type WP_Page_Type = 'frontpage' | 'home' | 'archive' | 'single' | 'term_archive';
 
 export interface WP_Page_Object {
 	description?: string;
