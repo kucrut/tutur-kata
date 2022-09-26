@@ -1,11 +1,14 @@
 <script>
 	import { get_taxonomy_icon } from '$lib/utils/icons';
 	import Article from '$lib/components/article.svelte';
+	import Seo from 'svelte-seo';
 	import TermsList from '$lib/components/terms-list.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
+
+<Seo title={data.title} />
 
 <div class="container">
 	<Article post={data.post} terms={data.terms}>
