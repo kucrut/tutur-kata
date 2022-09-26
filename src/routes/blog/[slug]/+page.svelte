@@ -11,7 +11,7 @@
 	 * @param {import('wp-types').WP_REST_API_Taxonomy} taxonomy
 	 */
 	function get_icon( taxonomy ) {
-		if ( taxonomy.slug === 'category' ) {
+		if ( taxonomy.rest_base === 'categories' ) {
 			return 'folders';
 		}
 
