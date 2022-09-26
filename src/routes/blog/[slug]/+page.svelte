@@ -11,7 +11,7 @@
 		<svelte:fragment slot="before-content" let:terms>
 			{#if terms?.length}
 				{#each terms as post_terms}
-					<TermsList taxonomy={post_terms.taxonomy} terms={post_terms.terms}>
+					<TermsList class="has-icon--before" taxonomy={post_terms.taxonomy} terms={post_terms.terms}>
 						<a slot="item" let:taxonomy let:term href="/{taxonomy.rest_base}/{term.slug}">{term.name}</a>
 					</TermsList>
 				{/each}
