@@ -1,5 +1,4 @@
 <script>
-	import Article from '$lib/components/article.svelte';
 	import PostsList from '$lib/components/posts-list.svelte';
 	import Seo from 'svelte-seo';
 
@@ -10,9 +9,13 @@
 <Seo title={data.title} />
 
 <div class="container">
-	<Article post={data.post} show_title={false} />
+	<h1>{data.term.name}</h1>
 
-	{#if data.latest_posts?.length}
-		<PostsList posts={data.latest_posts} title="Latest Posts" />
+	{#if data.term.description}
+		<p>{@html data.term.description}</p>
+	{/if}
+
+	{#if data.posts?.length}
+		<PostsList posts={data.posts} />
 	{/if}
 </div>

@@ -10,8 +10,8 @@
  */
 
 import { decode_entities } from '$lib/utils/simple-entity-decode';
-import { process_taxonomy } from '$lib/utils/taxonomy';
-import { process_term } from '$lib/utils/term';
+import { process_taxonomy_data } from '$lib/utils/taxonomy';
+import { process_term_data } from '$lib/utils/term';
 import { wp_fetch } from './wp-fetch.server';
 
 /**
@@ -114,8 +114,8 @@ export async function fetch_post_terms( post ) {
 			const taxonomy = await tax_response.json();
 
 			result.push( {
-				taxonomy: process_taxonomy( taxonomy ),
-				terms: terms.map( process_term ),
+				taxonomy: process_taxonomy_data( taxonomy ),
+				terms: terms.map( process_term_data ),
 			} );
 		} catch ( error ) {
 			// TODO: Log?

@@ -28,9 +28,9 @@ async function fetch_frontpage( id ) {
 		}
 
 		/** @type {Post} */
-		const post = await response.json();
+		const post_raw = await response.json();
 
-		return post;
+		return await process_post_data( post_raw );
 	} catch ( err ) {
 		maybe_throw_wp_api_error( err );
 		throw err; // TODO.
@@ -44,16 +44,20 @@ async function fetch_frontpage( id ) {
  */
 async function fetch_latest_posts() {
 	try {
-		const response = await wp_fetch( '/wp/v2/posts?per_page=10' );
+		const response = await wp_fetch( '/wp/v2/posts' );
 
 		if ( ! response.ok ) {
 			throw await response.json();
 		}
 
 		/** @type {Post[]} */
-		const posts = await response.json();
+		const posts_raw = await response.json();
 
-		return posts;
+		return await Promise.all(
+			posts_raw.map( async post => {
+				return await process_post_data( post );
+			} ),
+		);
 	} catch ( err ) {
 		maybe_throw_wp_api_error( err );
 		throw err; // TODO.
