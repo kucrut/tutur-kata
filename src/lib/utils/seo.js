@@ -14,9 +14,19 @@
  * @return {string} Document title.
  */
 export function generate_doc_title( wp_info, page_object, separator = '·' ) {
-	if ( page_object.type === 'frontpage' ) {
-		return page_object.title || wp_info.name;
+	const { taxonomy, title, type } = page_object;
+
+	if ( type === 'frontpage' ) {
+		return title || wp_info.name;
 	}
 
-	return `${ page_object.title } ${ separator } ${ wp_info.name }`;
+	let title_prefix = title;
+
+	if ( type === 'term_archive' && taxonomy ) {
+		title_prefix = taxonomy.hierarchical
+			? `Posts filed under "${ title_prefix }"`
+			: `Posts tagged with "${ title_prefix }"`;
+	}
+
+	return `${ title_prefix } ${ separator } ${ wp_info.name }`;
 }
