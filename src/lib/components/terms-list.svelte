@@ -6,17 +6,24 @@
 	export let taxonomy;
 	/** @type {import('wp-types').WP_REST_API_Term[]} */
 	export let terms;
-
-	// TODO: Accept item_component prop.
-
-	$: classes = `terms-list ${ cls }`.trim();
 </script>
 
 <slot name="before-list" {taxonomy} {terms} />
 
-<ul aria-label={taxonomy.name} class={classes} data-hierarchical={taxonomy.hierarchical} data-taxonomy={taxonomy.slug}>
+<ul
+	aria-label={taxonomy.name}
+	class={cls || null}
+	data-hierarchical={taxonomy.hierarchical}
+	data-taxonomy={taxonomy.slug}
+>
 	{#each terms as term}
-		<li>{term.name}</li>
+		<li>
+			{#if $$slots.item}
+				<slot name="item" {taxonomy} {term} />
+			{:else}
+				{term.name}
+			{/if}
+		</li>
 	{/each}
 </ul>
 

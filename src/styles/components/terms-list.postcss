@@ -1,12 +1,17 @@
 .terms-list {
 	list-style: none;
 	padding: unset;
+	margin-block-start: 0.25rem;
+	margin-block-end: unset;
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
 
 	li {
-		display: inline;
+		display: inline-flex;
 
 		&:not( :last-child )::after {
-			content: ', ';
+			content: ',';
 		}
 	}
 }
