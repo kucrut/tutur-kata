@@ -9,7 +9,9 @@
  * @typedef {{taxonomy: Taxonomy, terms: Term[]}} Post_Terms
  */
 
+import { process_post_data } from '$lib/utils/post';
 import { decode_entities } from '$lib/utils/simple-entity-decode';
+import { maybe_throw_wp_api_error } from './utils';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
 import { wp_fetch } from './wp-fetch.server';
@@ -123,4 +125,31 @@ export async function fetch_post_terms( post ) {
 	}
 
 	return result;
+}
+
+/**
+ * Fetch latest posts
+ *
+ * @return {Promise<Post[]>} Post object.
+ */
+export async function fetch_latest_posts() {
+	try {
+		const response = await wp_fetch( '/wp/v2/posts' );
+
+		if ( ! response.ok ) {
+			throw await response.json();
+		}
+
+		/** @type {Post[]} */
+		const posts_raw = await response.json();
+
+		return await Promise.all(
+			posts_raw.map( async post => {
+				return await process_post_data( post );
+			} ),
+		);
+	} catch ( err ) {
+		maybe_throw_wp_api_error( err );
+		throw err; // TODO.
+	}
 }
