@@ -1,11 +1,12 @@
 /** @typedef {import('wp-types').WP_REST_API_Post} Post */
 
-import { WP_FRONTPAGE_ID } from '$env/static/private';
 import { error } from '@sveltejs/kit';
+import { fetch_latest_posts } from '$lib/api/utils.server';
 import { generate_doc_title } from '$lib/utils/seo';
 import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { process_post_data } from '$lib/utils/post';
 import { wp_fetch } from '$lib/api/wp-fetch.server';
+import { WP_FRONTPAGE_ID } from '$env/static/private';
 
 function frontpage_error() {
 	throw error( 500 );
@@ -31,33 +32,6 @@ async function fetch_frontpage( id ) {
 		const post_raw = await response.json();
 
 		return await process_post_data( post_raw );
-	} catch ( err ) {
-		maybe_throw_wp_api_error( err );
-		throw err; // TODO.
-	}
-}
-
-/**
- * Fetch latest posts
- *
- * @return {Promise<Post[]>} Post object.
- */
-async function fetch_latest_posts() {
-	try {
-		const response = await wp_fetch( '/wp/v2/posts' );
-
-		if ( ! response.ok ) {
-			throw await response.json();
-		}
-
-		/** @type {Post[]} */
-		const posts_raw = await response.json();
-
-		return await Promise.all(
-			posts_raw.map( async post => {
-				return await process_post_data( post );
-			} ),
-		);
 	} catch ( err ) {
 		maybe_throw_wp_api_error( err );
 		throw err; // TODO.

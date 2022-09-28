@@ -19,6 +19,8 @@
 		<span class="site-branding">
 			<a href="/">{data.wp_info.name}</a>
 		</span>
+
+		<a href="/blog">Blog</a>
 	</nav>
 </header>
 
