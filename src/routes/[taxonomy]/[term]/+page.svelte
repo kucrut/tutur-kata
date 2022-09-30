@@ -16,6 +16,6 @@
 	{/if}
 
 	{#if data.posts?.length}
-		<PostsList posts={data.posts} />
+		<PostsList get_link={post => `/blog/${ post.slug }`} posts={data.posts} />
 	{/if}
 </div>
