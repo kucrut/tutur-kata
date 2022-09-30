@@ -12,6 +12,6 @@
 {/if}
 <ul>
 	{#each posts as post}
-		<li><Time datetime={post.date} /> <a href="/blog/{post.slug}">{@html post.title.rendered}</a></li>
+		<li><Time datetime={post.date} /> <a href="/blog/{post.slug}">{post.title.rendered}</a></li>
 	{/each}
 </ul>
