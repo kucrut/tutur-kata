@@ -1,4 +1,5 @@
 <script>
+	import { get_link } from '$utils/post';
 	import PostsList from '$lib/components/posts-list.svelte';
 	import Seo from 'svelte-seo';
 
@@ -16,6 +17,6 @@
 	{/if}
 
 	{#if data.posts?.length}
-		<PostsList get_link={post => `/blog/${ post.slug }`} posts={data.posts} />
+		<PostsList {get_link} posts={data.posts} />
 	{/if}
 </div>
