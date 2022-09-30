@@ -17,13 +17,7 @@
 	data-taxonomy={taxonomy.slug}
 >
 	{#each terms as term}
-		<li>
-			{#if $$slots.item}
-				<slot name="item" {taxonomy} {term} />
-			{:else}
-				{term.name}
-			{/if}
-		</li>
+		<li><slot name="item" {taxonomy} {term}>{term.name}</slot></li>
 	{/each}
 </ul>
 
