@@ -17,6 +17,6 @@
 	{/if}
 
 	{#if data.posts?.length}
-		<PostsList {get_link} posts={data.posts} />
+		<PostsList {get_link} class="recent-posts" posts={data.posts} />
 	{/if}
 </div>
