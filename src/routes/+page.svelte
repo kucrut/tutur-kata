@@ -13,6 +13,6 @@
 
 	{#if data.latest_posts?.length}
 		<h2>Latest Posts</h2>
-		<PostsList posts={data.latest_posts} />
+		<PostsList posts={data.latest_posts} get_link={post => `/blog/${ post.slug }`} />
 	{/if}
 </div>
