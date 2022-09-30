@@ -1,12 +1,9 @@
 <script>
-	import { setContext } from 'svelte';
 	import { get_blog_path } from '$lib/utils/path';
 	import '../styles/index.postcss';
 
 	/** @type {import('./$types').LayoutData} */
 	export let data;
-
-	setContext( 'wp_info', data.wp_info );
 </script>
 
 <svelte:head>
