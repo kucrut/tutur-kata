@@ -14,6 +14,6 @@
 
 	{#if data.latest_posts?.length}
 		<h2>Recent Posts</h2>
-		<PostsList {get_link} posts={data.latest_posts} />
+		<PostsList {get_link} class="recent-posts" posts={data.latest_posts} />
 	{/if}
 </div>
