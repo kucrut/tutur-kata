@@ -1,4 +1,6 @@
 <script>
+	// TODO: Show date in browser's timezone?
+
 	import { get_datetime_locale } from '$lib/utils/locale';
 	import { page } from '$app/stores';
 
