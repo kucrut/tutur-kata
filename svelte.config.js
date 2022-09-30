@@ -7,6 +7,8 @@ const config = {
 		alias: {
 			'$types': './src/types',
 			'$types/*': './src/types/*',
+			'$utils': './src/utils',
+			'$utils/*': './src/utils/*',
 		},
 	},
 };
