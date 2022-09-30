@@ -3,32 +3,24 @@
 
 	export { cls as class };
 	export let content_class = '';
-	export let link_title = false;
 	/** @type {import('wp-types').WP_REST_API_Post} */
 	export let post;
-	export let show_title = true;
 	/** @type {import('$lib/api/utils.server').Post_Terms[]|null} */
 	export let terms = null;
-	export let title_class = '';
-	export let title_tag = 'h1';
 </script>
 
 <article class={cls || null}>
-	<slot name="before-title" {link_title} {post} {show_title} {terms} {title_tag} />
+	<slot name="before-title" {post} {terms} />
 
-	{#if show_title}
-		<svelte:element this={title_tag} class={title_class || null}>
-			{#if link_title}
-				<a href="/blog/{post.slug}">{post.title.rendered}</a>
-			{:else}
-				{post.title.rendered}
-			{/if}
-		</svelte:element>
-	{/if}
+	<slot name="title" {post} {terms}>
+		<h1>{post.title.rendered}</h1>
+	</slot>
 
-	<slot name="before-content" {link_title} {post} {show_title} {terms} {title_tag} />
+	<slot name="before-content" {post} {terms} />
 
-	<div class={content_class || null}>{@html post.content.rendered}</div>
+	<slot name="content" {post} {terms}>
+		<div class={content_class || null}>{@html post.content.rendered}</div>
+	</slot>
 
-	<slot name="after-content" {link_title} {post} {show_title} {terms} {title_tag} />
+	<slot name="after-content" {post} {terms} />
 </article>

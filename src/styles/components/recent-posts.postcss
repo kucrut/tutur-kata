@@ -1,0 +1,17 @@
+.recent-posts {
+	padding-inline-start: unset;
+
+	li {
+		display: flex;
+		flex-direction: column;
+
+		&:not( :last-child ) {
+			margin-block-end: 1rem;
+		}
+
+		@media ( --small ) {
+			flex-direction: row;
+			gap: 0.75rem;
+		}
+	}
+}

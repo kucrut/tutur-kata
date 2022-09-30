@@ -1,17 +1,25 @@
 <script>
+	/** @typedef {import('wp-types').WP_REST_API_Post} Post */
+
 	import Time from './time.svelte';
 
-	/** @type {import('wp-types').WP_REST_API_Post[]} */
+	let cls = '';
+	export { cls as class };
+
+	/** @type {Post[]} */
 	export let posts;
-	export let title = '';
-	export let title_tag = 'h2';
+
+	/**
+	 * Get post link
+	 *
+	 * @param {Post} post Post object.
+	 * @return {string} Post link.
+	 */
+	export let get_link = post => `/${ post.slug }`;
 </script>
 
-{#if title}
-	<svelte:element this={title_tag}>{title}</svelte:element>
-{/if}
-<ul>
+<ul class={cls || null}>
 	{#each posts as post}
-		<li><Time datetime={post.date} /> <a href="/blog/{post.slug}">{@html post.title.rendered}</a></li>
+		<li><Time datetime={post.date} /> <a href={get_link( post )}>{post.title.rendered}</a></li>
 	{/each}
 </ul>
