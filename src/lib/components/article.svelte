@@ -18,7 +18,9 @@
 
 	<slot name="before-content" {post} {terms} />
 
-	<div class={content_class || null}>{@html post.content.rendered}</div>
+	<slot name="content" {post} {terms}>
+		<div class={content_class || null}>{@html post.content.rendered}</div>
+	</slot>
 
 	<slot name="after-content" {post} {terms} />
 </article>
