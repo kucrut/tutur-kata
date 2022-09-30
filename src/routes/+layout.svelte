@@ -1,4 +1,5 @@
 <script>
+	import { get_blog_path } from '$lib/utils/path';
 	import '../styles/index.postcss';
 
 	/** @type {import('./$types').LayoutData} */
@@ -20,7 +21,7 @@
 			<a href="/">{data.wp_info.name}</a>
 		</span>
 
-		<a href="/blog">Blog</a>
+		<a href={get_blog_path()}>Blog</a>
 	</nav>
 </header>
 
