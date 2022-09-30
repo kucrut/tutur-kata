@@ -12,11 +12,9 @@
 <article class={cls || null}>
 	<slot name="before-title" {post} {terms} />
 
-	{#if $$slots.title}
-		<slot name="title" {post} {terms} />
-	{:else}
+	<slot name="title" {post} {terms}>
 		<h1>{post.title.rendered}</h1>
-	{/if}
+	</slot>
 
 	<slot name="before-content" {post} {terms} />
 
