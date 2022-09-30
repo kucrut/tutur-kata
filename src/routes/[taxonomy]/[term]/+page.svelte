@@ -1,5 +1,5 @@
 <script>
-	import { get_link } from '$utils/path';
+	import { get_link } from '$lib/utils/path';
 	import PostsList from '$lib/components/posts-list.svelte';
 	import Seo from 'svelte-seo';
 
