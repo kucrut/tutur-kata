@@ -11,7 +11,7 @@
 
 <div class="container">
 	{#if data.posts?.length}
-		<h1>Latest Posts</h1>
+		<h1>Recent Posts</h1>
 		<PostsList {get_link} posts={data.posts} />
 	{:else}
 		<h1>Nothing found</h1>

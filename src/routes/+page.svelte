@@ -13,7 +13,7 @@
 	<div class="frontpage-intro">{@html data.post.content.rendered}</div>
 
 	{#if data.latest_posts?.length}
-		<h2>Latest Posts</h2>
+		<h2>Recent Posts</h2>
 		<PostsList {get_link} posts={data.latest_posts} />
 	{/if}
 </div>
