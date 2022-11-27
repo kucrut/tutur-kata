@@ -1,4 +1,3 @@
-import { error } from '@sveltejs/kit';
 import { fetch_info } from '$lib/api/utils.server';
 import { sequence } from '@sveltejs/kit/hooks';
 
@@ -8,12 +7,9 @@ import { sequence } from '@sveltejs/kit/hooks';
  * @type {import('@sveltejs/kit').Handle}
  */
 async function add_wp_info_to_locals( { event, resolve } ) {
-	try {
-		event.locals.wp_info = await fetch_info();
-		return await resolve( event );
-	} catch ( err ) {
-		throw error( 500, err instanceof Error ? err : { message: 'Unknown error.' } );
-	}
+	event.locals.wp_info = await fetch_info();
+
+	return await resolve( event );
 }
 
 export const handle = sequence( add_wp_info_to_locals );
