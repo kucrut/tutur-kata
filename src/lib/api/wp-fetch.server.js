@@ -1,4 +1,5 @@
 import { WP_API_APP_AUTH, WP_API_ROOT_URL } from '$env/static/private';
+import { error } from '@sveltejs/kit';
 
 /**
  * Generate REST URL
@@ -37,5 +38,14 @@ export async function wp_fetch( path, options = undefined ) {
 		request.headers.append( 'Authorization', `Basic ${ Buffer.from( `${ WP_API_APP_AUTH }` ).toString( 'base64' ) }` );
 	}
 
-	return fetch( request );
+	const response = await fetch( request );
+
+	if ( response.ok ) {
+		return response;
+	}
+
+	// eslint-disable-next-line no-console
+	console.error( { path, status: response.status, message: response.statusText } );
+
+	throw error( 500, 'Internal error' );
 }

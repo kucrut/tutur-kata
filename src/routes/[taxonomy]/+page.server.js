@@ -2,7 +2,7 @@ import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { params } ) {
-	if ( ! params.term ) {
+	if ( ! ( 'term' in params ) ) {
 		throw redirect( 301, '/' );
 	}
 }

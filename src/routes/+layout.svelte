@@ -9,8 +9,7 @@
 <svelte:head>
 	{#if data.favicons}
 		{#each data.favicons as attributes}
-			{@const  tag = 'rel' in attributes ? 'link' : 'meta' }
-			<svelte:element this={tag} {...attributes} />
+			<svelte:element this={'rel' in attributes ? 'link' : 'meta'} {...attributes} />
 		{/each}
 	{/if}
 </svelte:head>
