@@ -1,0 +1,18 @@
+{
+	"prettier.enable": false,
+	"editor.formatOnSave": false,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true,
+		"source.organizeImports": false
+	},
+	"eslint.validate": [
+		"html",
+		"javascript",
+		"json",
+		"jsonc",
+		"markdown",
+		"svelte",
+		"typescript",
+		"yaml"
+	]
+}
