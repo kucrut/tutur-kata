@@ -63,7 +63,7 @@ devDependencies:
     specifier: ^6.0.1
     version: 6.0.1(postcss@8.4.29)
   prettier:
-    specifier: npm:wp-prettier@^2.6.2
+    specifier: npm:wp-prettier@^2.8.5
     version: /wp-prettier@2.8.5
   prettier-plugin-svelte:
     specifier: ^2.9.0
