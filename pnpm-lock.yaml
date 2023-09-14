@@ -56,9 +56,6 @@ devDependencies:
   postcss-import:
     specifier: ^15.1.0
     version: 15.1.0(postcss@8.4.29)
-  postcss-nested:
-    specifier: ^6.0.1
-    version: 6.0.1(postcss@8.4.29)
   rehype:
     specifier: ^13.0.1
     version: 13.0.1
@@ -4926,16 +4923,6 @@ packages:
 
   /postcss-media-query-parser@0.2.3:
     resolution: {integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==}
-    dev: true
-
-  /postcss-nested@6.0.1(postcss@8.4.29):
-    resolution: {integrity: sha512-mEp4xPMi5bSWiMbsgoPfcP74lsWLHkQbZc3sY+jWYd65CUwXrUaTp0fmNpa01ZcETKlIgUdFN/MpS2xZtqL9dQ==}
-    engines: {node: '>=12.0'}
-    peerDependencies:
-      postcss: ^8.2.14
-    dependencies:
-      postcss: 8.4.29
-      postcss-selector-parser: 6.0.13
     dev: true
 
   /postcss-resolve-nested-selector@0.1.1:
