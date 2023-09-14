@@ -10,6 +10,7 @@
 <Seo title={data.title} />
 
 <div class="container">
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	<div class="frontpage-intro">{@html data.post.content.rendered}</div>
 
 	{#if data.latest_posts?.length}
