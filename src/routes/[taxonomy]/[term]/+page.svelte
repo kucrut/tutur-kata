@@ -13,6 +13,7 @@
 	<h1>{data.term.name}</h1>
 
 	{#if data.term.description}
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		<p>{@html data.term.description}</p>
 	{/if}
 

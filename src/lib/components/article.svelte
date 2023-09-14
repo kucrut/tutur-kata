@@ -19,6 +19,7 @@
 	<slot name="before-content" {post} {terms} />
 
 	<slot name="content" {post} {terms}>
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		<div class={content_class || null}>{@html post.content.rendered}</div>
 	</slot>
 
