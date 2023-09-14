@@ -8,8 +8,6 @@
 	"eslint.validate": [
 		"html",
 		"javascript",
-		"json",
-		"jsonc",
 		"markdown",
 		"svelte",
 		"typescript",
