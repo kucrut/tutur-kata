@@ -1,6 +1,8 @@
 module.exports = {
 	root: true,
 	extends: [
+		'@sveltejs',
+		'plugin:svelte/recommended',
 		'plugin:@wordpress/eslint-plugin/custom',
 		'plugin:@wordpress/eslint-plugin/esnext',
 		'plugin:@wordpress/eslint-plugin/jsdoc',
@@ -8,20 +10,18 @@ module.exports = {
 	],
 	env: {
 		browser: true,
-		es6: true,
+		es2022: true,
 		node: true,
 	},
 	globals: {
 		BufferEncoding: false,
+		globalThis: false,
 		NodeJS: false,
 	},
 	overrides: [
 		{
 			files: [ '*.html', '*.svelte' ],
-			processor: 'svelte3/svelte3',
-			rules: {
-				'no-undef-init': 'off',
-			},
+			parser: 'svelte-eslint-parser',
 		},
 		{
 			files: [ '*.ts' ],
@@ -30,16 +30,11 @@ module.exports = {
 			},
 		},
 	],
-	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		ecmaVersion: 2022,
+		ecmaVersion: 13, // es2022
 		sourceType: 'module',
 	},
-	plugins: [ 'svelte3', '@typescript-eslint' ],
-	settings: {
-		'svelte3/ignore-styles': () => true,
-		'svelte3/typescript': () => require( 'typescript' ),
-	},
+	plugins: [ '@typescript-eslint' ],
 	rules: {
 		'arrow-parens': [ 'error', 'as-needed' ],
 		'camelcase': 'off',
@@ -62,11 +57,11 @@ module.exports = {
 			},
 		],
 		// Plugins
-		'jsdoc/no-undefined-types': [
-			'error',
-			{
-				definedTypes: [ 'RequestInit' ],
-			},
-		],
+		// Need to wait for WP's config to catch up with the latest jsdoc plugin.
+		'jsdoc/no-undefined-types': 'off',
+		'jsdoc/check-param-names': 'off',
+		'jsdoc/require-param': 'off',
+		'jsdoc/require-param-type': 'off',
+		'jsdoc/valid-types': 'off',
 	},
 };
