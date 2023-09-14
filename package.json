@@ -21,7 +21,6 @@
 		"@wordpress/stylelint-config": "^21.24.0",
 		"autoprefixer": "^10.4.15",
 		"eslint": "^8.49.0",
-		"eslint-plugin-svelte3": "^4.0.0",
 		"highlight.js": "^11.8.0",
 		"postcss": "^8.4.29",
 		"postcss-custom-media": "^10.0.0",
