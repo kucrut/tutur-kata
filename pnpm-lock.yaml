@@ -71,9 +71,6 @@ devDependencies:
   stylelint-config-standard-scss:
     specifier: ^11.0.0
     version: 11.0.0(postcss@8.4.29)(stylelint@15.10.3)
-  stylelint-use-logical:
-    specifier: ^2.1.0
-    version: 2.1.0(stylelint@15.10.3)
   svelte:
     specifier: ^4.2.0
     version: 4.2.0
@@ -5630,15 +5627,6 @@ packages:
       postcss-resolve-nested-selector: 0.1.1
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
-      stylelint: 15.10.3(typescript@5.2.2)
-    dev: true
-
-  /stylelint-use-logical@2.1.0(stylelint@15.10.3):
-    resolution: {integrity: sha512-DN1boOPI6IMYTlu2KeQpH5hDEiCODHhd+AtXU0InO37wkWAuELiPwuv59HrTg2m9PYmqGTTO/QWdMBafYVPfew==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      stylelint: '>= 11 < 16'
-    dependencies:
       stylelint: 15.10.3(typescript@5.2.2)
     dev: true
 

@@ -1,36 +1,14 @@
 {
-	"extends": [ "stylelint-config-standard-scss", "@wordpress/stylelint-config" ],
-	"plugins": [ "stylelint-use-logical" ],
+	"extends": "stylelint-config-standard-scss",
+	"plugins": [ "stylelint-use-logical-spec" ],
 	"rules": {
 		"alpha-value-notation": "number",
-		"at-rule-empty-line-before": [
-			"never",
-			{
-				"ignore": [ "first-nested", "inside-block" ]
-			}
-		],
 		"color-function-notation": "legacy",
-		"comment-empty-line-before": [
-			"always",
-			{
-				"except": [ "first-nested" ],
-				"ignore": [ "after-comment", "stylelint-commands" ]
-			}
-		],
 		"custom-property-empty-line-before": "never",
-		"function-parentheses-space-inside": "always-single-line",
-		"indentation": "tab",
-		"media-feature-parentheses-space-inside": "always",
-		"rule-empty-line-before": [
-			"always-multi-line",
-			{
-				"ignore": [ "after-comment", "first-nested" ]
-			}
-		],
 		"selector-class-pattern": [
-			"^([a-z][a-z0-9]*)([-_]{0,2}[a-z0-9]+)*$",
+			"^([a-z][a-z0-9]*)([-_]{1,2}[a-z0-9]+)*$",
 			{
-				"message": "Selector should use lowercase and separate words with hyphens or underscores (selector-class-pattern)"
+				"message": "Selector should use lowercase and separate words with maximum two hyphens or underscores (selector-class-pattern)"
 			}
 		],
 		"selector-pseudo-class-no-unknown": [
@@ -39,9 +17,7 @@
 				"ignorePseudoClasses": [ "global" ]
 			}
 		],
-		"selector-pseudo-class-parentheses-space-inside": "always",
-		"string-quotes": "single",
-		"csstools/use-logical": "always",
+		"liberty/use-logical-spec": "always",
 		"scss/at-import-partial-extension": null
 	},
 	"overrides": [
