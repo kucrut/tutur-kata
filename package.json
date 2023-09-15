@@ -10,7 +10,7 @@
 		"pnpm": ">=8.7.5"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.22.17",
+		"@babel/core": "^7.22.19",
 		"@csstools/postcss-global-data": "^2.1.0",
 		"@playwright/test": "^1.38.0",
 		"@sveltejs/adapter-auto": "2.1.0",
