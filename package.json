@@ -11,6 +11,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.22.17",
+		"@csstools/postcss-global-data": "^2.1.0",
 		"@playwright/test": "^1.38.0",
 		"@sveltejs/adapter-auto": "2.1.0",
 		"@sveltejs/eslint-config": "^6.0.4",
