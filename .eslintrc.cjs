@@ -56,12 +56,12 @@ module.exports = {
 				asyncArrow: 'always',
 			},
 		],
-		// Plugins
-		// Need to wait for WP's config to catch up with the latest jsdoc plugin.
-		'jsdoc/no-undefined-types': 'off',
-		'jsdoc/check-param-names': 'off',
-		'jsdoc/require-param': 'off',
-		'jsdoc/require-param-type': 'off',
-		'jsdoc/valid-types': 'off',
+		// Plugins.
+		'jsdoc/no-undefined-types': [
+			'error',
+			{
+				definedTypes: [ 'RequestInit' ],
+			},
+		],
 	},
 };
