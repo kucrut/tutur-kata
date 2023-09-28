@@ -48,7 +48,7 @@
 		"format:fix": "prettier --write .",
 		"lint:css": "stylelint '**/*.html' '**/*.css' '**/*.postcss' '**/*.svelte'",
 		"lint:js": "eslint .",
-		"lint": "pnpm lint:css && pnpm lint:js",
+		"lint": "pnpm format:check && pnpm lint:css && pnpm lint:js",
 		"preview": "vite preview",
 		"test": "playwright test",
 		"types:check": "svelte-check --tsconfig ./jsconfig.json"
