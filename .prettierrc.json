@@ -1,0 +1,30 @@
+{
+	"arrowParens": "avoid",
+	"bracketSpacing": true,
+	"parenSpacing": true,
+	"printWidth": 120,
+	"quoteProps": "consistent",
+	"semi": true,
+	"singleQuote": true,
+	"svelteAllowShorthand": true,
+	"svelteSortOrder": "options-scripts-markup-styles",
+	"trailingComma": "all",
+	"useTabs": true,
+	"plugins": [ "prettier-plugin-svelte", "eslint-plugin-prettier" ],
+	"overrides": [
+		{
+			"files": [ "*.yaml", "*.yml" ],
+			"options": {
+				"singleQuote": false,
+				"tabWidth": 2,
+				"useTabs": false
+			}
+		},
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		}
+	]
+}
