@@ -46,6 +46,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"dev": "vite dev",
+		"format:check": "prettier --check .",
+		"format:fix": "prettier --write .",
 		"lint:css": "stylelint '**/*.html' '**/*.css' '**/*.postcss' '**/*.svelte'",
 		"lint:js": "eslint .",
 		"lint": "pnpm lint:css && pnpm lint:js",
