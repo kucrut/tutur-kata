@@ -15,6 +15,7 @@
 		"@sveltejs/adapter-auto": "2.1.0",
 		"@sveltejs/eslint-config": "^6.0.4",
 		"@sveltejs/kit": "1.25.1",
+		"@types/node": "^20.7.1",
 		"@typescript-eslint/eslint-plugin": "^6.7.3",
 		"@typescript-eslint/parser": "^6.7.3",
 		"@wordpress/eslint-plugin": "^16.0.0",
