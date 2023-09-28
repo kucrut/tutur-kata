@@ -51,6 +51,6 @@
 		"lint": "pnpm format:check && pnpm lint:css && pnpm lint:js",
 		"preview": "vite preview",
 		"test": "playwright test",
-		"types:check": "svelte-check --tsconfig ./jsconfig.json"
+		"types:check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json"
 	}
 }
