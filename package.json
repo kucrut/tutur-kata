@@ -39,11 +39,6 @@
 		"vite": "^4.4.9",
 		"wp-types": "^3.62.4"
 	},
-	"pnpm": {
-		"overrides": {
-			"eslint-plugin-jsdoc": "^39.6.4"
-		}
-	},
 	"scripts": {
 		"build": "vite build",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
