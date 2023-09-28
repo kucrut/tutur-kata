@@ -11,9 +11,7 @@ module.exports = {
 	plugins: [
 		at_import,
 		global_data( {
-			files: [
-				'node_modules/open-props/media.min.css',
-			],
+			files: [ 'node_modules/open-props/media.min.css' ],
 		} ),
 		jit_props( open_props ),
 		preset_env( { stage: 0 } ),
