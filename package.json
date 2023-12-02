@@ -7,7 +7,7 @@
 	"type": "module",
 	"engines": {
 		"node": ">=20",
-		"pnpm": ">=8.10"
+		"pnpm": ">=8.9"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.23.5",
