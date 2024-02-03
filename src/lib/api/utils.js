@@ -34,6 +34,6 @@ export function maybe_throw_wp_api_error( err ) {
 	if ( is_wp_rest_api_error( err ) ) {
 		wp_api_error = err;
 		// @ts-expect-error TODO.
-		throw error( wp_api_error.data.status, wp_api_error.message );
+		error( wp_api_error.data.status, wp_api_error.message );
 	}
 }

@@ -9,7 +9,7 @@ import { wp_fetch } from '$lib/api/wp-fetch.server';
 import { WP_FRONTPAGE_ID } from '$env/static/private';
 
 function frontpage_error() {
-	throw error( 500 );
+	error( 500 );
 	// TODO: Log.
 }
 

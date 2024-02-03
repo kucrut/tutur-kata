@@ -47,5 +47,5 @@ export async function wp_fetch( path, options = undefined ) {
 	// eslint-disable-next-line no-console
 	console.error( { path, status: response.status, message: response.statusText } );
 
-	throw error( 500, 'Internal error' );
+	error( 500, 'Internal error' );
 }
