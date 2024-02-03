@@ -3,6 +3,7 @@
 	"version": "0.0.0",
 	"author": "Dzikri Aziz",
 	"license": "MIT",
+	"packageManager": "pnpm@18.15.1",
 	"private": true,
 	"type": "module",
 	"devDependencies": {
