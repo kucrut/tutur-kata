@@ -19,7 +19,7 @@ export async function load( { locals, params } ) {
 		const terms = await terms_response.json();
 
 		if ( ! terms.length ) {
-			throw error( 404, 'Not found.' );
+			error( 404, 'Not found.' );
 		}
 
 		const [ term_raw ] = terms;

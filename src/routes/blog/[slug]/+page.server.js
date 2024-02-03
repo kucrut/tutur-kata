@@ -18,7 +18,7 @@ export async function load( { locals, params } ) {
 		const posts = await response.json();
 
 		if ( ! posts.length ) {
-			throw error( 404, 'Not found.' );
+			error( 404, 'Not found.' );
 		}
 
 		const [ post_raw ] = posts;

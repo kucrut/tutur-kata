@@ -13,9 +13,10 @@
 		"@babel/core": "^7.23.0",
 		"@csstools/postcss-global-data": "^2.1.0",
 		"@playwright/test": "^1.38.1",
-		"@sveltejs/adapter-auto": "2.1.0",
+		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/eslint-config": "^6.0.4",
-		"@sveltejs/kit": "1.25.1",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/node": "^20.7.1",
 		"@typescript-eslint/eslint-plugin": "^6.7.3",
 		"@typescript-eslint/parser": "^6.7.3",
@@ -41,7 +42,7 @@
 		"svelte-check": "^3.5.2",
 		"svelte-seo": "^1.5.4",
 		"typescript": "^5.2.2",
-		"vite": "^4.4.9",
+		"vite": "^5.0.0",
 		"wp-types": "^3.62.4"
 	},
 	"scripts": {
