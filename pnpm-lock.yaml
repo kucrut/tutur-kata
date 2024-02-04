@@ -12,8 +12,8 @@ devDependencies:
     specifier: ^2.1.1
     version: 2.1.1(postcss@8.4.33)
   '@kucrut/wp-api-helpers':
-    specifier: file:../../libs/wp-api-helpers
-    version: file:../../libs/wp-api-helpers(zod@3.22.4)
+    specifier: ^0.2.0
+    version: 0.2.0(zod@3.22.4)
   '@playwright/test':
     specifier: ^1.41.2
     version: 1.41.2
@@ -2091,6 +2091,14 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
+    dev: true
+
+  /@kucrut/wp-api-helpers@0.2.0(zod@3.22.4):
+    resolution: {integrity: sha512-j979Drf10JM957s7j1ijf8lrj8rEcWYJj6CRtNUMwDPXSzNrgJpjaQXCvrmHtfMezNrS4eV3jEGF9NsW8dFuug==}
+    peerDependencies:
+      zod: ^3.22.4
+    dependencies:
+      zod: 3.22.4
     dev: true
 
   /@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1:
@@ -6994,14 +7002,4 @@ packages:
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
-    dev: true
-
-  file:../../libs/wp-api-helpers(zod@3.22.4):
-    resolution: {directory: ../../libs/wp-api-helpers, type: directory}
-    id: file:../../libs/wp-api-helpers
-    name: '@kucrut/wp-api-helpers'
-    peerDependencies:
-      zod: ^3.22.4
-    dependencies:
-      zod: 3.22.4
     dev: true
