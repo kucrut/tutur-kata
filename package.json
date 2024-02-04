@@ -23,6 +23,7 @@
 		"eslint": "^8.56.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"highlight.js": "^11.9.0",
+		"just-omit": "^2.2.0",
 		"open-props": "^1.6.18",
 		"postcss": "^8.4.33",
 		"postcss-html": "^1.6.0",
