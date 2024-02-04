@@ -1,5 +1,5 @@
 import { get_api_auth, get_api_url } from './wp-fetch.server';
-import { get_media, get_post_terms, get_posts } from '@kucrut/wp-api-helpers';
+import { get_single_media, get_post_terms, get_posts } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
@@ -18,7 +18,7 @@ export async function generate_favicons( site_icon_id ) {
 	}
 
 	try {
-		const attachment = await get_media( get_api_url(), get_api_auth(), site_icon_id );
+		const attachment = await get_single_media( site_icon_id, get_api_url(), get_api_auth() );
 
 		if ( ! attachment?.media_details?.sizes ) {
 			return null;
