@@ -1,5 +1,5 @@
 /**
- * @typedef {import('wp-types').WP_REST_API_Post} Post
+ * @typedef {import('$types').WP_Post} Post
  * @typedef {import('$types').WP_Page_Object} WP_Page_Object
  * @typedef {import('$types').WP_Info} WP_Info
  */
