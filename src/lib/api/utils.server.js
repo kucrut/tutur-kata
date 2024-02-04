@@ -10,7 +10,6 @@
  */
 
 import { process_post_data } from '$lib/utils/post';
-import { decode_entities } from '$lib/utils/simple-entity-decode';
 import { maybe_throw_wp_api_error } from './utils';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
@@ -61,27 +60,6 @@ export async function generate_favicons( site_icon_id ) {
 	}
 
 	return icons;
-}
-
-/**
- * Fetch WordPress site info
- *
- * @return {Promise<import('$types').WP_Info>} Site info.
- */
-export async function fetch_info() {
-	const response = await wp_fetch( '/' );
-	const { description, gmt_offset, home, name, site_icon, site_logo, timezone_string, url } = await response.json();
-
-	return {
-		gmt_offset,
-		home,
-		site_icon,
-		site_logo,
-		timezone_string,
-		url,
-		description: decode_entities( description ),
-		name: decode_entities( name ),
-	};
 }
 
 /**
