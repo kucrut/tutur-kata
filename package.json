@@ -9,6 +9,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.23.9",
 		"@csstools/postcss-global-data": "^2.1.1",
+		"@kucrut/wp-api-helpers": "file:../../libs/wp-api-helpers",
 		"@playwright/test": "^1.41.2",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/eslint-config": "^6.0.4",
@@ -40,7 +41,8 @@
 		"svelte-seo": "^1.6.0",
 		"typescript": "^5.3.3",
 		"vite": "^5.0.0",
-		"wp-types": "^3.64.0"
+		"wp-types": "^3.64.0",
+		"zod": "^3.22.4"
 	},
 	"scripts": {
 		"build": "vite build",
