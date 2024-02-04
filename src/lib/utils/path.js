@@ -1,6 +1,6 @@
 /** @typedef {import('wp-types').WP_REST_API_Post} Post */
 
-import { PUBLIC_BLOG_PATH } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 
 /**
  * Get blog path
@@ -8,7 +8,7 @@ import { PUBLIC_BLOG_PATH } from '$env/static/public';
  * @return {string} Blog path.
  */
 export function get_blog_path() {
-	return PUBLIC_BLOG_PATH;
+	return env.PUBLIC_BLOG_PATH;
 }
 
 /**

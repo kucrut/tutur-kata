@@ -1,12 +1,12 @@
 /** @typedef {import('wp-types').WP_REST_API_Post} Post */
 
+import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 import { fetch_latest_posts } from '$lib/api/utils.server';
 import { generate_doc_title } from '$lib/utils/seo';
 import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { process_post_data } from '$lib/utils/post';
 import { wp_fetch } from '$lib/api/wp-fetch.server';
-import { WP_FRONTPAGE_ID } from '$env/static/private';
 
 function frontpage_error() {
 	error( 500 );
@@ -40,11 +40,11 @@ async function fetch_frontpage( id ) {
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals } ) {
-	if ( ! WP_FRONTPAGE_ID ) {
+	if ( ! env.WP_FRONTPAGE_ID ) {
 		frontpage_error();
 	}
 
-	const frontpage_id = Number( WP_FRONTPAGE_ID );
+	const frontpage_id = Number( env.WP_FRONTPAGE_ID );
 
 	if ( isNaN( frontpage_id ) || frontpage_id < 1 ) {
 		frontpage_error();
