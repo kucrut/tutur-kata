@@ -4,7 +4,6 @@ import { fetch_latest_posts } from '$lib/api/utils.server';
 import { generate_doc_title } from '$lib/utils/seo';
 import { get_api_auth, get_api_url } from '$lib/api/wp-fetch.server';
 import { get_posts } from '@kucrut/wp-api-helpers';
-import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { process_post_data } from '$lib/utils/post';
 
 /**
@@ -31,8 +30,9 @@ async function get_frontpage() {
 		const post = await get_posts( get_api_url(), get_api_auth(), 'pages', frontpage_id );
 		return await process_post_data( post );
 	} catch ( err ) {
-		maybe_throw_wp_api_error( err );
-		throw err; // TODO.
+		// eslint-disable-next-line no-console
+		console.error( err );
+		error( 500 );
 	}
 }
 
