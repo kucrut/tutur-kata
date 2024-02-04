@@ -1,32 +1,24 @@
 import { error } from '@sveltejs/kit';
-import { fetch_post_terms } from '$lib/api/utils.server';
-import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { generate_doc_title } from '$lib/utils/seo';
+import { get_post_terms_processed } from '$lib/api/utils.server';
+import { get_posts } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
-import { wp_fetch } from '$lib/api/wp-fetch.server';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals, params } ) {
 	try {
-		const response = await wp_fetch( `/wp/v2/posts?slug=${ params.slug }` );
+		const data = await get_posts( locals.wp_api_url, locals.wp_api_auth, 'posts', { slug: [ params.slug ] } );
 
-		if ( ! response.ok ) {
-			throw await response.json();
-		}
-
-		/** @type {import('wp-types').WP_REST_API_Posts} */
-		const posts = await response.json();
-
-		if ( ! posts.length ) {
+		if ( ! data.length ) {
 			error( 404, 'Not found.' );
 		}
 
-		const [ post_raw ] = posts;
+		const [ post_raw ] = data;
 		const post = await process_post_data( post_raw );
 
 		return {
 			post,
-			terms: await fetch_post_terms( post ),
+			terms: await get_post_terms_processed( post ),
 			title: generate_doc_title( locals.wp_info, {
 				title: post.title.rendered,
 				type: 'single',
@@ -34,7 +26,8 @@ export async function load( { locals, params } ) {
 			} ),
 		};
 	} catch ( err ) {
-		maybe_throw_wp_api_error( err );
-		throw err;
+		// eslint-disable-next-line no-console
+		console.error( '/blog/[slug] server loader:', err );
+		error( 500 );
 	}
 }
