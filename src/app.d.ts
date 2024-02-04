@@ -6,6 +6,8 @@
 declare namespace App {
 	// interface Error {}
 	interface Locals {
+		wp_api_auth: string;
+		wp_api_url: string;
 		wp_info: import('$types').WP_Info;
 	}
 	// interface PageData {}
