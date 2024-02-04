@@ -6,6 +6,6 @@ export async function load( { locals } ) {
 
 	return {
 		wp_info,
-		favicons: generate_favicons( wp_info.site_icon ),
+		favicons: await generate_favicons( wp_info.site_icon ),
 	};
 }
