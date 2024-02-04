@@ -4,6 +4,8 @@ import { process_post_data } from '$lib/utils/post';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
 
+/** @typedef {(import('$types').Favicon|import('$types').TileImage)[]} Icons */
+
 /**
  * Generate favicons
  *
@@ -22,7 +24,7 @@ export async function generate_favicons( site_icon_id ) {
 			return null;
 		}
 
-		/** @type {(import('$types').Favicon|import('$types').TileImage)[]} */
+		/** @type {Icons} */
 		const icons = [];
 		const key_prefix = 'site_icon-';
 
