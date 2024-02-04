@@ -8,9 +8,15 @@ import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { process_post_data } from '$lib/utils/post';
 import { wp_fetch } from '$lib/api/wp-fetch.server';
 
-function frontpage_error() {
+/**
+ * Frontpage error
+ *
+ * @param {string} message Error message.
+ */
+function frontpage_error( message ) {
+	// eslint-disable-next-line no-console
+	console.error( message );
 	error( 500 );
-	// TODO: Log.
 }
 
 /**
@@ -41,13 +47,13 @@ async function fetch_frontpage( id ) {
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals } ) {
 	if ( ! env.WP_FRONTPAGE_ID ) {
-		frontpage_error();
+		frontpage_error( 'WP_FRONTPAGE_ID is not set.' );
 	}
 
 	const frontpage_id = Number( env.WP_FRONTPAGE_ID );
 
 	if ( isNaN( frontpage_id ) || frontpage_id < 1 ) {
-		frontpage_error();
+		frontpage_error( 'Invalid WP_FRONTPAGE_ID value.' );
 	}
 
 	const post = await fetch_frontpage( frontpage_id );
