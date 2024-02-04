@@ -11,6 +11,9 @@ devDependencies:
   '@csstools/postcss-global-data':
     specifier: ^2.1.1
     version: 2.1.1(postcss@8.4.33)
+  '@kucrut/wp-api-helpers':
+    specifier: ^0.2.0
+    version: 0.2.0(zod@3.22.4)
   '@playwright/test':
     specifier: ^1.41.2
     version: 1.41.2
@@ -104,9 +107,9 @@ devDependencies:
   vite:
     specifier: ^5.0.0
     version: 5.0.12(@types/node@20.11.16)
-  wp-types:
-    specifier: ^3.64.0
-    version: 3.64.0
+  zod:
+    specifier: ^3.22.4
+    version: 3.22.4
 
 packages:
 
@@ -2085,6 +2088,14 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
+    dev: true
+
+  /@kucrut/wp-api-helpers@0.2.0(zod@3.22.4):
+    resolution: {integrity: sha512-j979Drf10JM957s7j1ijf8lrj8rEcWYJj6CRtNUMwDPXSzNrgJpjaQXCvrmHtfMezNrS4eV3jEGF9NsW8dFuug==}
+    peerDependencies:
+      zod: ^3.22.4
+    dependencies:
+      zod: 3.22.4
     dev: true
 
   /@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1:
@@ -6928,12 +6939,6 @@ packages:
     hasBin: true
     dev: true
 
-  /wp-types@3.64.0:
-    resolution: {integrity: sha512-8rwHUQFxI18jezvObymV0eKEhnU2xaSci5ra6YG+dV6EDZLfNR2z3NZA82mFkOzZRWpl/Dlj+a4u8aqk08UPGQ==}
-    dependencies:
-      typescript: 5.3.3
-    dev: true
-
   /wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
     engines: {node: '>=10'}
@@ -6980,6 +6985,10 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: true
 
   /zwitch@2.0.4:

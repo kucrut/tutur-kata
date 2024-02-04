@@ -1,61 +1,48 @@
-/** @typedef {import('wp-types').WP_REST_API_Post} Post */
-
 import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
-import { fetch_latest_posts } from '$lib/api/utils.server';
+import { get_latest_posts } from '$lib/api/utils.server';
 import { generate_doc_title } from '$lib/utils/seo';
-import { maybe_throw_wp_api_error } from '$lib/api/utils';
+import { get_post } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
-import { wp_fetch } from '$lib/api/wp-fetch.server';
-
-function frontpage_error() {
-	error( 500 );
-	// TODO: Log.
-}
 
 /**
- * Fetch frontpage
+ * Get frontpage
  *
- * @param {number} id Frontpage ID.
+ * @param {string} url  WP API URL.
+ * @param {string} auth WP API auth.
  *
- * @return {Promise<Post>} Post object.
+ * @return {Promise<import('$types').WP_Post>} Post object.
  */
-async function fetch_frontpage( id ) {
-	try {
-		const response = await wp_fetch( `/wp/v2/pages/${ id }` );
-
-		if ( ! response.ok ) {
-			throw await response.json();
-		}
-
-		/** @type {Post} */
-		const post_raw = await response.json();
-
-		return await process_post_data( post_raw );
-	} catch ( err ) {
-		maybe_throw_wp_api_error( err );
-		throw err; // TODO.
-	}
-}
-
-/** @type {import('./$types').PageServerLoad} */
-export async function load( { locals } ) {
+async function get_frontpage( url, auth ) {
 	if ( ! env.WP_FRONTPAGE_ID ) {
-		frontpage_error();
+		// eslint-disable-next-line no-console
+		console.error( 'WP_FRONTPAGE_ID is not set.' );
+		error( 500 );
 	}
 
 	const frontpage_id = Number( env.WP_FRONTPAGE_ID );
 
 	if ( isNaN( frontpage_id ) || frontpage_id < 1 ) {
-		frontpage_error();
+		// eslint-disable-next-line no-console
+		console.error( 'Invalid WP_FRONTPAGE_ID value.' );
+		error( 500 );
 	}
 
-	const post = await fetch_frontpage( frontpage_id );
-	const latest_posts = await fetch_latest_posts();
+	try {
+		const post = await get_post( frontpage_id, url, auth, 'pages' );
+		return await process_post_data( post );
+	} catch ( err ) {
+		// eslint-disable-next-line no-console
+		console.error( err );
+		error( 500 );
+	}
+}
 
+/** @type {import('./$types').PageServerLoad} */
+export async function load( { locals } ) {
 	return {
-		latest_posts,
-		post: await process_post_data( post ),
+		latest_posts: await get_latest_posts(),
+		post: await get_frontpage( locals.wp_api_url, locals.wp_api_auth ),
 		title: generate_doc_title( locals.wp_info, { type: 'frontpage' } ),
 	};
 }

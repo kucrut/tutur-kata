@@ -1,22 +1,14 @@
 import { error } from '@sveltejs/kit';
 import { generate_doc_title } from '$lib/utils/seo';
-import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { process_post_data } from '$lib/utils/post';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
-import { wp_fetch } from '$lib/api/wp-fetch.server';
+import { get_posts, get_taxonomy, get_terms } from '@kucrut/wp-api-helpers';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals, params } ) {
 	try {
-		const terms_response = await wp_fetch( `/wp/v2/${ params.taxonomy }?slug=${ params.term }` );
-
-		if ( ! terms_response.ok ) {
-			throw await terms_response.json();
-		}
-
-		/** @type {import('wp-types').WP_REST_API_Terms} */
-		const terms = await terms_response.json();
+		const terms = await get_terms( locals.wp_api_url, params.taxonomy, locals.wp_api_auth, { slug: [ params.term ] } );
 
 		if ( ! terms.length ) {
 			error( 404, 'Not found.' );
@@ -25,19 +17,12 @@ export async function load( { locals, params } ) {
 		const [ term_raw ] = terms;
 		const term = process_term_data( term_raw );
 
-		const tax_response = await wp_fetch( `/wp/v2/taxonomies/${ term.taxonomy }` );
-		/** @type {import('wp-types').WP_REST_API_Taxonomy} */
-		const taxonomy_raw = await tax_response.json();
+		const taxonomy_raw = await get_taxonomy( term.taxonomy, locals.wp_api_url, locals.wp_api_auth );
 		const taxonomy = process_taxonomy_data( taxonomy_raw );
 
-		const posts_response = await wp_fetch( `/wp/v2/posts?${ taxonomy.rest_base }=${ term.id }` );
-
-		if ( ! posts_response.ok ) {
-			throw await posts_response.json();
-		}
-
-		/** @type {import('wp-types').WP_REST_API_Posts} */
-		const posts_raw = await posts_response.json();
+		const posts_raw = await get_posts( locals.wp_api_url, locals.wp_api_auth, 'posts', {
+			[ taxonomy.rest_base ]: [ term.id ],
+		} );
 		const posts = await Promise.all(
 			posts_raw.map( async post => {
 				return await process_post_data( post );
@@ -56,7 +41,8 @@ export async function load( { locals, params } ) {
 			} ),
 		};
 	} catch ( err ) {
-		maybe_throw_wp_api_error( err );
-		throw err;
+		// eslint-disable-next-line no-console
+		console.error( 'Single term loader:', err );
+		error( 500 );
 	}
 }

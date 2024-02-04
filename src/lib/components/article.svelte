@@ -3,9 +3,9 @@
 
 	export { cls as class };
 	export let content_class = '';
-	/** @type {import('wp-types').WP_REST_API_Post} */
+	/** @type {import('$types').WP_Post} */
 	export let post;
-	/** @type {import('$lib/api/utils.server').Post_Terms[]|null} */
+	/** @type {Awaited<ReturnType<typeof import('@kucrut/wp-api-helpers').get_post_terms>>} */
 	export let terms = null;
 </script>
 

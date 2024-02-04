@@ -1,9 +1,9 @@
-import { fetch_latest_posts } from '$lib/api/utils.server';
+import { get_latest_posts } from '$lib/api/utils.server';
 import { generate_doc_title } from '$lib/utils/seo';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals } ) {
-	const posts = await fetch_latest_posts();
+	const posts = await get_latest_posts();
 
 	return {
 		posts,

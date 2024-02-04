@@ -1,20 +1,38 @@
-/**
- * @typedef {import('$types').Favicon} Favicon
- * @typedef {import('$types').TileImage} TileImage
- * @typedef {import('$types').WP_REST_API_Media} WP_REST_API_Media
- * @typedef {import('wp-types').WP_REST_API_Post} Post
- * @typedef {import('wp-types').WP_REST_API_Term} Term
- * @typedef {import('wp-types').WP_REST_API_Taxonomy} Taxonomy
- * @typedef {(Favicon|TileImage)[]} Icons
- * @typedef {{taxonomy: Taxonomy, terms: Term[]}} Post_Terms
- */
-
+import { env } from '$env/dynamic/private';
+import { get_single_media, get_post_terms, get_posts } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
-import { decode_entities } from '$lib/utils/simple-entity-decode';
-import { maybe_throw_wp_api_error } from './utils';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
-import { wp_fetch } from './wp-fetch.server';
+
+/** @typedef {(import('$types').Favicon|import('$types').TileImage)[]} Icons */
+
+/**
+ * Get WP API auth
+ *
+ * @return {string} WP API auth string.
+ */
+export function get_api_auth() {
+	const auth = env.WP_API_APP_AUTH || '';
+
+	if ( ! auth ) {
+		return auth;
+	}
+
+	if ( env.WP_API_APP_AUTH_TYPE === 'jwt' ) {
+		return `Bearer ${ auth }`;
+	}
+
+	return `Basic ${ Buffer.from( auth ).toString( 'base64' ) }`;
+}
+
+/**
+ * Get WP API root URL
+ *
+ * @return {string} WP Rest API root URL.
+ */
+export function get_api_url() {
+	return env.WP_API_ROOT_URL;
+}
 
 /**
  * Generate favicons
@@ -27,129 +45,83 @@ export async function generate_favicons( site_icon_id ) {
 		return null;
 	}
 
-	const response = await wp_fetch( `/wp/v2/media/${ site_icon_id }` );
+	try {
+		const attachment = await get_single_media( site_icon_id, get_api_url(), get_api_auth() );
 
-	if ( ! response.ok ) {
-		return null;
-	}
+		if ( ! attachment?.media_details?.sizes ) {
+			return null;
+		}
 
-	const key_prefix = 'site_icon-';
-	/** @type {WP_REST_API_Media} */
-	const attachment = await response.json();
-	/** @type {Icons} */
-	const icons = [];
+		/** @type {Icons} */
+		const icons = [];
+		const key_prefix = 'site_icon-';
 
-	for ( const size of [ 32, 180, 192 ] ) {
-		const key = key_prefix + size;
+		for ( const size of [ 32, 180, 192 ] ) {
+			const key = key_prefix + size;
 
-		if ( key in attachment.media_details.sizes ) {
+			if ( key in attachment.media_details.sizes ) {
+				icons.push( {
+					href: attachment.media_details.sizes[ key ].source_url,
+					rel: size === 180 ? 'apple-touch-icon' : 'icon',
+					sizes: `${ size }x${ size }`,
+				} );
+			}
+		}
+
+		const tile_key = key_prefix + '270';
+
+		if ( tile_key in attachment.media_details.sizes ) {
 			icons.push( {
-				href: attachment.media_details.sizes[ key ].source_url,
-				rel: size === 180 ? 'apple-touch-icon' : 'icon',
-				sizes: `${ size }x${ size }`,
+				content: attachment.media_details.sizes[ tile_key ].source_url,
+				name: 'msapplication-TileImage',
 			} );
 		}
+
+		return icons;
+	} catch ( error ) {
+		// eslint-disable-next-line no-console
+		console.error( 'generate_favicons():', error );
+		return null;
 	}
-
-	const tile_key = key_prefix + '270';
-
-	if ( tile_key in attachment.media_details.sizes ) {
-		icons.push( {
-			content: attachment.media_details.sizes[ tile_key ].source_url,
-			name: 'msapplication-TileImage',
-		} );
-	}
-
-	return icons;
-}
-
-/**
- * Fetch WordPress site info
- *
- * @return {Promise<import('$types').WP_Info>} Site info.
- */
-export async function fetch_info() {
-	const response = await wp_fetch( '/' );
-	const { description, gmt_offset, home, name, site_icon, site_logo, timezone_string, url } = await response.json();
-
-	return {
-		gmt_offset,
-		home,
-		site_icon,
-		site_logo,
-		timezone_string,
-		url,
-		description: decode_entities( description ),
-		name: decode_entities( name ),
-	};
 }
 
 /**
  * Fetch post terms
  *
- * @param {Post} post Post object.
+ * @param {import('$types').WP_Post} post Post object.
  *
- * @return {Promise<Post_Terms[]|null>} Array of favicons and tile images or null.
+ * @return {ReturnType<typeof get_post_terms>} Array of favicons and tile images or null.
  */
-export async function fetch_post_terms( post ) {
-	const taxonomies = post._links[ 'wp:term' ];
+export async function get_post_terms_processed( post ) {
+	const data = await get_post_terms( post, get_api_auth() );
 
-	if ( ! ( Array.isArray( taxonomies ) && taxonomies.length ) ) {
-		return null;
+	if ( ! data || ( Array.isArray( data ) && ! data.length ) ) {
+		return data;
 	}
 
-	/** @type {Post_Terms[]} */
-	const result = [];
-
-	for ( const tax of taxonomies ) {
-		try {
-			const response = await wp_fetch( tax.href );
-			/** @type {Term[]} */
-			const terms = await response.json();
-
-			if ( ! terms.length ) {
-				continue;
-			}
-
-			const tax_response = await wp_fetch( terms[ 0 ]._links.about[ 0 ].href );
-			/** @type {Taxonomy} */
-			const taxonomy = await tax_response.json();
-
-			result.push( {
-				taxonomy: process_taxonomy_data( taxonomy ),
-				terms: terms.map( process_term_data ),
-			} );
-		} catch ( error ) {
-			// TODO: Log?
-		}
-	}
-
-	return result;
+	return data.map( ( { taxonomy, terms } ) => ( {
+		taxonomy: process_taxonomy_data( taxonomy ),
+		terms: terms.map( process_term_data ),
+	} ) );
 }
 
 /**
- * Fetch latest posts
+ * Get latest posts
  *
- * @return {Promise<Post[]>} Post object.
+ * @return {Promise<import('$types').WP_Post[]>} Array of post objects.
  */
-export async function fetch_latest_posts() {
+export async function get_latest_posts() {
 	try {
-		const response = await wp_fetch( '/wp/v2/posts' );
-
-		if ( ! response.ok ) {
-			throw await response.json();
-		}
-
-		/** @type {Post[]} */
-		const posts_raw = await response.json();
+		const posts = await get_posts( get_api_url(), get_api_auth() );
 
 		return await Promise.all(
-			posts_raw.map( async post => {
+			posts.map( async post => {
 				return await process_post_data( post );
 			} ),
 		);
-	} catch ( err ) {
-		maybe_throw_wp_api_error( err );
-		throw err; // TODO.
+	} catch ( error ) {
+		// eslint-disable-next-line no-console
+		console.error( 'get_latest_posts():', error );
+		return [];
 	}
 }
