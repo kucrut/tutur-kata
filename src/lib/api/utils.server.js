@@ -106,11 +106,11 @@ export async function fetch_post_terms( post ) {
 }
 
 /**
- * Fetch latest posts
+ * Get latest posts
  *
  * @return {Promise<import('$types').WP_Post[]>} Array of post objects.
  */
-export async function fetch_latest_posts() {
+export async function get_latest_posts() {
 	try {
 		const posts = await get_posts( get_api_url(), get_api_auth() );
 
