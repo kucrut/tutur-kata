@@ -1,6 +1,5 @@
 import { error } from '@sveltejs/kit';
 import { generate_doc_title } from '$lib/utils/seo';
-import { maybe_throw_wp_api_error } from '$lib/api/utils';
 import { process_post_data } from '$lib/utils/post';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
@@ -42,7 +41,8 @@ export async function load( { locals, params } ) {
 			} ),
 		};
 	} catch ( err ) {
-		maybe_throw_wp_api_error( err );
-		throw err;
+		// eslint-disable-next-line no-console
+		console.error( 'Single term loader:', err );
+		error( 500 );
 	}
 }
