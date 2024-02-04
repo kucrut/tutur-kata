@@ -1,5 +1,5 @@
-import { get_api_auth, get_api_url } from '$lib/api/wp-fetch.server';
 import { decode_entities } from '$lib/utils/simple-entity-decode';
+import { get_api_auth, get_api_url } from '$lib/api/utils.server';
 import { get_info } from '@kucrut/wp-api-helpers';
 import { sequence } from '@sveltejs/kit/hooks';
 
