@@ -9,7 +9,10 @@ import { sequence } from '@sveltejs/kit/hooks';
  * @type {import('@sveltejs/kit').Handle}
  */
 async function add_wp_info_to_locals( { event, resolve } ) {
-	const wp_info = await get_info( get_api_url(), get_api_auth() );
+	event.locals.wp_api_auth = get_api_auth();
+	event.locals.wp_api_url = get_api_url();
+
+	const wp_info = await get_info( event.locals.wp_api_url, event.locals.wp_api_auth );
 
 	event.locals.wp_info = {
 		...wp_info,
