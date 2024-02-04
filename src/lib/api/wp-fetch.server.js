@@ -20,6 +20,15 @@ export function generate_rest_url( root, path ) {
 }
 
 /**
+ * Get WP API root URL
+ *
+ * @return {string} WP Rest API root URL.
+ */
+export function get_api_url() {
+	return env.WP_API_ROOT_URL;
+}
+
+/**
  * Fetch data from WordPress
  *
  * @param {string}                 path    REST API path.
