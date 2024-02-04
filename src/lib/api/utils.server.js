@@ -1,15 +1,8 @@
-/**
- * @typedef {import('wp-types').WP_REST_API_Post} Post
- * @typedef {import('wp-types').WP_REST_API_Term} Term
- * @typedef {import('wp-types').WP_REST_API_Taxonomy} Taxonomy
- * @typedef {{taxonomy: Taxonomy, terms: Term[]}} Post_Terms
- */
-
-import { get_media, get_posts } from '@kucrut/wp-api-helpers';
+import { get_api_auth, get_api_url } from './wp-fetch.server';
+import { get_media, get_post_terms, get_posts } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
-import { get_api_auth, get_api_url, wp_fetch } from './wp-fetch.server';
 
 /**
  * Generate favicons
@@ -65,44 +58,21 @@ export async function generate_favicons( site_icon_id ) {
 /**
  * Fetch post terms
  *
- * @param {Post} post Post object.
+ * @param {import('$types').WP_Post} post Post object.
  *
- * @return {Promise<Post_Terms[]|null>} Array of favicons and tile images or null.
+ * @return {ReturnType<typeof get_post_terms>} Array of favicons and tile images or null.
  */
-export async function fetch_post_terms( post ) {
-	const taxonomies = post._links[ 'wp:term' ];
+export async function get_post_terms_processed( post ) {
+	const data = await get_post_terms( post, get_api_auth() );
 
-	if ( ! ( Array.isArray( taxonomies ) && taxonomies.length ) ) {
-		return null;
+	if ( ! data || ( Array.isArray( data ) && ! data.length ) ) {
+		return data;
 	}
 
-	/** @type {Post_Terms[]} */
-	const result = [];
-
-	for ( const tax of taxonomies ) {
-		try {
-			const response = await wp_fetch( tax.href );
-			/** @type {Term[]} */
-			const terms = await response.json();
-
-			if ( ! terms.length ) {
-				continue;
-			}
-
-			const tax_response = await wp_fetch( terms[ 0 ]._links.about[ 0 ].href );
-			/** @type {Taxonomy} */
-			const taxonomy = await tax_response.json();
-
-			result.push( {
-				taxonomy: process_taxonomy_data( taxonomy ),
-				terms: terms.map( process_term_data ),
-			} );
-		} catch ( error ) {
-			// TODO: Log?
-		}
-	}
-
-	return result;
+	return data.map( ( { taxonomy, terms } ) => ( {
+		taxonomy: process_taxonomy_data( taxonomy ),
+		terms: terms.map( process_term_data ),
+	} ) );
 }
 
 /**
