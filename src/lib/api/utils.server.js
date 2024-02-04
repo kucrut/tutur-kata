@@ -1,10 +1,7 @@
 /**
- * @typedef {import('$types').Favicon} Favicon
- * @typedef {import('$types').TileImage} TileImage
  * @typedef {import('wp-types').WP_REST_API_Post} Post
  * @typedef {import('wp-types').WP_REST_API_Term} Term
  * @typedef {import('wp-types').WP_REST_API_Taxonomy} Taxonomy
- * @typedef {(Favicon|TileImage)[]} Icons
  * @typedef {{taxonomy: Taxonomy, terms: Term[]}} Post_Terms
  */
 
@@ -33,7 +30,7 @@ export async function generate_favicons( site_icon_id ) {
 			return null;
 		}
 
-		/** @type {Icons} */
+		/** @type {(import('$types').Favicon|import('$types').TileImage)[]} */
 		const icons = [];
 		const key_prefix = 'site_icon-';
 
