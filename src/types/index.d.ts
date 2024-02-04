@@ -1,4 +1,4 @@
-import { info, post_view } from '@kucrut/wp-api-helpers';
+import { info, post_view, term_view } from '@kucrut/wp-api-helpers';
 import type { WP_REST_API_Attachment as Attachment, WP_REST_API_Taxonomy } from 'wp-types';
 import type { z } from 'zod';
 
@@ -18,6 +18,9 @@ export interface TileImage {
 
 export type WP_Info = z.infer< typeof info >;
 export type WP_Post = z.infer< typeof post_view >;
+export type WP_Taxonomy = z.infer< typeof taxonomy >;
+export type WP_Term = z.infer< typeof term_view >;
+export type WP_Post_Term = { taxonomy: WP_Taxonomy; terms: WP_Term[] };
 
 export type WP_Page_Type = 'frontpage' | 'home' | 'archive' | 'single' | 'term_archive';
 
