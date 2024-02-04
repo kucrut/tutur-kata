@@ -57,7 +57,7 @@ export async function generate_favicons( site_icon_id ) {
 		return icons;
 	} catch ( error ) {
 		// eslint-disable-next-line no-console
-		console.error( error );
+		console.error( 'generate_favicons():', error );
 		return null;
 	}
 }
@@ -121,7 +121,7 @@ export async function get_latest_posts() {
 		);
 	} catch ( error ) {
 		// eslint-disable-next-line no-console
-		console.error( error );
+		console.error( 'get_latest_posts():', error );
 		return [];
 	}
 }
