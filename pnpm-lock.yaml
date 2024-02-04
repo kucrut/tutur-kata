@@ -107,9 +107,6 @@ devDependencies:
   vite:
     specifier: ^5.0.0
     version: 5.0.12(@types/node@20.11.16)
-  wp-types:
-    specifier: ^3.64.0
-    version: 3.64.0
   zod:
     specifier: ^3.22.4
     version: 3.22.4
@@ -6940,12 +6937,6 @@ packages:
     resolution: {integrity: sha512-X4UlrxDTH8oom9qXlcjnydsjAOD2BmB6yFmvS4Z2zdTzqqpRWb+fbqrH412+l+OUXmbzJlSXjlMFYPgYG12IAA==}
     engines: {node: '>=14'}
     hasBin: true
-    dev: true
-
-  /wp-types@3.64.0:
-    resolution: {integrity: sha512-8rwHUQFxI18jezvObymV0eKEhnU2xaSci5ra6YG+dV6EDZLfNR2z3NZA82mFkOzZRWpl/Dlj+a4u8aqk08UPGQ==}
-    dependencies:
-      typescript: 5.3.3
     dev: true
 
   /wrap-ansi@7.0.0:
