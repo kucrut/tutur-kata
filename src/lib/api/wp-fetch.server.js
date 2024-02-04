@@ -1,4 +1,4 @@
-import { WP_API_APP_AUTH, WP_API_ROOT_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 
 /**
@@ -28,14 +28,17 @@ export function generate_rest_url( root, path ) {
  * @return {Promise<Response>} Response object.
  */
 export async function wp_fetch( path, options = undefined ) {
-	const resource = generate_rest_url( WP_API_ROOT_URL, path );
+	const resource = generate_rest_url( env.WP_API_ROOT_URL, path );
 	const request = new Request( resource, options );
 
 	// TODO: Add cookie & nonce if passed (highest priority).
 	// TODO: Refresh nonce when needed if the URL is provided in the config.
 
-	if ( WP_API_APP_AUTH ) {
-		request.headers.append( 'Authorization', `Basic ${ Buffer.from( `${ WP_API_APP_AUTH }` ).toString( 'base64' ) }` );
+	if ( env.WP_API_APP_AUTH ) {
+		request.headers.append(
+			'Authorization',
+			`Basic ${ Buffer.from( `${ env.WP_API_APP_AUTH }` ).toString( 'base64' ) }`,
+		);
 	}
 
 	const response = await fetch( request );

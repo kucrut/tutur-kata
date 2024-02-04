@@ -1,4 +1,4 @@
-import { PUBLIC_DATETIME_LOCALE } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 
 /**
  * Get datetime locale
@@ -6,5 +6,5 @@ import { PUBLIC_DATETIME_LOCALE } from '$env/static/public';
  * @return {string} Locale for datetime.
  */
 export function get_datetime_locale() {
-	return PUBLIC_DATETIME_LOCALE;
+	return env.PUBLIC_DATETIME_LOCALE;
 }
