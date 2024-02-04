@@ -2,16 +2,18 @@ import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 import { fetch_latest_posts } from '$lib/api/utils.server';
 import { generate_doc_title } from '$lib/utils/seo';
-import { get_api_auth, get_api_url } from '$lib/api/wp-fetch.server';
 import { get_posts } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
 
 /**
  * Get frontpage
  *
+ * @param {string} url  WP API URL.
+ * @param {string} auth WP API auth.
+ *
  * @return {Promise<import('$types').WP_Post>} Post object.
  */
-async function get_frontpage() {
+async function get_frontpage( url, auth ) {
 	if ( ! env.WP_FRONTPAGE_ID ) {
 		// eslint-disable-next-line no-console
 		console.error( 'WP_FRONTPAGE_ID is not set.' );
@@ -27,7 +29,7 @@ async function get_frontpage() {
 	}
 
 	try {
-		const post = await get_posts( get_api_url(), get_api_auth(), 'pages', frontpage_id );
+		const post = await get_posts( url, auth, 'pages', frontpage_id );
 		return await process_post_data( post );
 	} catch ( err ) {
 		// eslint-disable-next-line no-console
@@ -40,7 +42,7 @@ async function get_frontpage() {
 export async function load( { locals } ) {
 	return {
 		latest_posts: await fetch_latest_posts(),
-		post: await get_frontpage(),
+		post: await get_frontpage( locals.wp_api_url, locals.wp_api_auth ),
 		title: generate_doc_title( locals.wp_info, { type: 'frontpage' } ),
 	};
 }
