@@ -5,9 +5,8 @@
  * @typedef {{taxonomy: Taxonomy, terms: Term[]}} Post_Terms
  */
 
-import { get_media } from '@kucrut/wp-api-helpers';
+import { get_media, get_posts } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
-import { maybe_throw_wp_api_error } from './utils';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
 import { get_api_auth, get_api_url, wp_fetch } from './wp-fetch.server';
@@ -109,26 +108,20 @@ export async function fetch_post_terms( post ) {
 /**
  * Fetch latest posts
  *
- * @return {Promise<Post[]>} Post object.
+ * @return {Promise<import('$types').WP_Post[]>} Array of post objects.
  */
 export async function fetch_latest_posts() {
 	try {
-		const response = await wp_fetch( '/wp/v2/posts' );
-
-		if ( ! response.ok ) {
-			throw await response.json();
-		}
-
-		/** @type {Post[]} */
-		const posts_raw = await response.json();
+		const posts = await get_posts( get_api_url(), get_api_auth() );
 
 		return await Promise.all(
-			posts_raw.map( async post => {
+			posts.map( async post => {
 				return await process_post_data( post );
 			} ),
 		);
-	} catch ( err ) {
-		maybe_throw_wp_api_error( err );
-		throw err; // TODO.
+	} catch ( error ) {
+		// eslint-disable-next-line no-console
+		console.error( error );
+		return [];
 	}
 }
