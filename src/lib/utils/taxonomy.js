@@ -1,15 +1,11 @@
-/**
- * @typedef {import('wp-types').WP_REST_API_Taxonomy} Taxonomy
- */
-
 import { decode_entities } from '$lib/utils/simple-entity-decode';
 
 /**
  * Process WP taxonomy data
  *
- * @param {Taxonomy} taxonomy WP taxonomy object.
+ * @param {import('$types').WP_Taxonomy} taxonomy WP taxonomy object.
  *
- * @return {Taxonomy} Processed WP taxonomy object.
+ * @return {import('$types').WP_Taxonomy} Processed WP taxonomy object.
  */
 export function process_taxonomy_data( taxonomy ) {
 	return {
