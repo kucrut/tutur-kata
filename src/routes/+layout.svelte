@@ -21,6 +21,7 @@
 		</span>
 
 		<a href={get_blog_path()}>Blog</a>
+		<a href="/gallery">Gallery</a>
 	</nav>
 </header>
 
