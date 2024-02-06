@@ -1,5 +1,5 @@
 <script>
-	import { get_blog_path } from '$lib/utils/path';
+	import SiteNav from '$lib/components/site-nav.svelte';
 	import '../styles/index.postcss';
 
 	/** @type {import('./$types').LayoutData} */
@@ -15,14 +15,7 @@
 </svelte:head>
 
 <header class="site-header">
-	<nav class="container site-nav">
-		<span class="site-branding">
-			<a href="/">{data.wp_info.name}</a>
-		</span>
-
-		<a href={get_blog_path()}>Blog</a>
-		<a href="/gallery">Gallery</a>
-	</nav>
+	<SiteNav />
 </header>
 
 <main>
