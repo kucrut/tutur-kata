@@ -13,6 +13,10 @@ export async function load( { locals } ) {
 	/** @type {import('$types').NavItem[]} */
 	const nav_items = [];
 
+	if ( locals.wp_blog_post_type ) {
+		nav_items.push( { label: 'Blog', path: '/blog' } );
+	}
+
 	if ( gallery_cat_ids.length ) {
 		nav_items.push( { label: 'Gallery', path: '/gallery' } );
 	}
