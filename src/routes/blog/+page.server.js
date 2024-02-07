@@ -1,4 +1,4 @@
-import { get_blog_posts } from '$lib/api/utils.server';
+import { get_posts } from '$lib/api/utils.server';
 import { generate_doc_title } from '$lib/utils/seo';
 import { redirect } from '@sveltejs/kit';
 
@@ -8,7 +8,7 @@ export async function load( { locals } ) {
 		redirect( 302, '/' );
 	}
 
-	const posts = await get_blog_posts( locals.wp_blog_post_type );
+	const posts = await get_posts( locals.wp_blog_post_type );
 
 	return {
 		posts,

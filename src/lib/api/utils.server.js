@@ -1,5 +1,9 @@
 import { env } from '$env/dynamic/private';
-import { get_single_media, get_post_terms as get_post_terms_raw, get_posts } from '@kucrut/wp-api-helpers';
+import {
+	get_single_media,
+	get_post_terms as get_post_terms_raw,
+	get_posts as get_posts_raw,
+} from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
@@ -112,9 +116,9 @@ export async function get_post_terms( post ) {
  *
  * @return {Promise<import('$types').WP_Post[]>} Array of post objects.
  */
-export async function get_blog_posts( post_type ) {
+export async function get_posts( post_type ) {
 	try {
-		const posts = await get_posts( get_api_url(), get_api_auth(), post_type );
+		const posts = await get_posts_raw( get_api_url(), get_api_auth(), post_type );
 
 		return await Promise.all(
 			posts.map( async post => {
