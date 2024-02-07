@@ -15,7 +15,7 @@
 </svelte:head>
 
 <header class="site-header">
-	<SiteNav with_gallery={data.gallery_cat_ids.length > 0} />
+	<SiteNav items={data.nav_items} />
 </header>
 
 <main>
