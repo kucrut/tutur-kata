@@ -10,8 +10,16 @@ export async function load( { locals } ) {
 		.map( id => Number( id ) )
 		.filter( id => ! isNaN( id ) && typeof id === 'number' && id > 0 );
 
+	/** @type {import('$types').NavItem[]} */
+	const nav_items = [];
+
+	if ( gallery_cat_ids.length ) {
+		nav_items.push( { label: 'Gallery', path: '/gallery' } );
+	}
+
 	return {
 		gallery_cat_ids,
+		nav_items,
 		wp_info,
 		favicons: await generate_favicons( wp_info.site_icon ),
 	};
