@@ -1,4 +1,5 @@
 <script>
+	import NoPosts from '$lib/components/no-posts.svelte';
 	import PostsList from '$lib/components/posts-list.svelte';
 	import Seo from 'svelte-seo';
 
@@ -9,11 +10,10 @@
 <Seo title={data.title} />
 
 <div class="container">
+	<h1>Blog</h1>
 	{#if data.posts?.length}
-		<h1>Recent Posts</h1>
 		<PostsList class="recent-posts" posts={data.posts} />
 	{:else}
-		<h1>Nothing found</h1>
-		<p>There are no blog posts to show at this time. Stay tuned! 😉</p>
+		<NoPosts />
 	{/if}
 </div>
