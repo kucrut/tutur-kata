@@ -1,5 +1,4 @@
 <script>
-	import { get_blog_post_link } from '$lib/utils/path';
 	import PostsList from '$lib/components/posts-list.svelte';
 	import Seo from 'svelte-seo';
 
@@ -12,7 +11,7 @@
 <div class="container">
 	{#if data.posts?.length}
 		<h1>Recent Posts</h1>
-		<PostsList {get_blog_post_link} class="recent-posts" posts={data.posts} />
+		<PostsList class="recent-posts" posts={data.posts} />
 	{:else}
 		<h1>Nothing found</h1>
 		<p>There are no blog posts to show at this time. Stay tuned! 😉</p>
