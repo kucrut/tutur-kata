@@ -10,8 +10,8 @@
 <Seo title={data.title} />
 
 <div class="container">
+	<h1>Blog</h1>
 	{#if data.posts?.length}
-		<h1>Recent Posts</h1>
 		<PostsList class="recent-posts" posts={data.posts} />
 	{:else}
 		<NoPosts />
