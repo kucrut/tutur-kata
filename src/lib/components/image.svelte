@@ -29,7 +29,7 @@
 </script>
 
 <figure>
-	<a href={media.source_url}>
+	<a href={media.source_url} on:click>
 		<img {height} {sizes} {srcset} {src} {width} alt={media.alt_text} decoding="async" />
 	</a>
 	<figcaption>
