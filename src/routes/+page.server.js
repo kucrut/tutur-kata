@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
-import { get_latest_posts } from '$lib/api/utils.server';
 import { generate_doc_title } from '$lib/utils/seo';
+import { get_blog_posts } from '$lib/api/utils.server';
 import { get_post } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
 
@@ -41,7 +41,7 @@ async function get_frontpage( url, auth ) {
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals } ) {
 	return {
-		latest_posts: await get_latest_posts(),
+		latest_posts: locals.wp_blog_post_type ? await get_blog_posts( locals.wp_blog_post_type ) : undefined,
 		post: await get_frontpage( locals.wp_api_url, locals.wp_api_auth ),
 		title: generate_doc_title( locals.wp_info, { type: 'frontpage' } ),
 	};
