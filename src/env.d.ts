@@ -6,6 +6,7 @@ interface ImportMetaEnv {
 	readonly WP_API_APP_AUTH_TYPE: string;
 	readonly WP_API_APP_AUTH: string;
 	readonly WP_API_ROOT_URL: string;
+	readonly WP_BLOG_POST_TYPE: string;
 	readonly WP_FRONTPAGE_ID: string;
 	readonly WP_GALLERY_CATEGORY_IDS: string;
 }
