@@ -10,6 +10,11 @@ export interface Favicon {
 	sizes: string;
 }
 
+export interface NavItem {
+	label: string;
+	path: string;
+}
+
 export interface TileImage {
 	content: string;
 	name: string;
