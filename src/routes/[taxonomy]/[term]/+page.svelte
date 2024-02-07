@@ -1,4 +1,5 @@
 <script>
+	import NoPosts from '$lib/components/no-posts.svelte';
 	import PostsList from '$lib/components/posts-list.svelte';
 	import Seo from 'svelte-seo';
 
@@ -18,5 +19,7 @@
 
 	{#if data.posts?.length}
 		<PostsList class="recent-posts" posts={data.posts} />
+	{:else}
+		<NoPosts />
 	{/if}
 </div>

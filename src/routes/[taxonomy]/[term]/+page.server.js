@@ -43,6 +43,6 @@ export async function load( { locals, params } ) {
 	} catch ( err ) {
 		// eslint-disable-next-line no-console
 		console.error( 'Single term loader:', err );
-		error( 500 );
+		error( 404, 'Not found.' );
 	}
 }

@@ -16,7 +16,7 @@ import { process_post_data } from '$lib/utils/post';
 async function get_frontpage( url, auth ) {
 	if ( ! env.WP_FRONTPAGE_ID ) {
 		// eslint-disable-next-line no-console
-		console.error( 'WP_FRONTPAGE_ID is not set.' );
+		console.error( 'get_frontpage: WP_FRONTPAGE_ID is not set.' );
 		error( 500 );
 	}
 
@@ -24,8 +24,8 @@ async function get_frontpage( url, auth ) {
 
 	if ( isNaN( frontpage_id ) || frontpage_id < 1 ) {
 		// eslint-disable-next-line no-console
-		console.error( 'Invalid WP_FRONTPAGE_ID value.' );
-		error( 500 );
+		console.error( 'get_frontpage: Invalid WP_FRONTPAGE_ID value.' );
+		error( 500, 'Internal error.' );
 	}
 
 	try {
@@ -33,8 +33,8 @@ async function get_frontpage( url, auth ) {
 		return await process_post_data( post );
 	} catch ( err ) {
 		// eslint-disable-next-line no-console
-		console.error( err );
-		error( 500 );
+		console.error( 'get_frontpage:', err );
+		error( 500, 'Internal error.' );
 	}
 }
 
