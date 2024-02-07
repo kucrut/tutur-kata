@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/private';
-import { get_single_media, get_post_terms, get_posts } from '@kucrut/wp-api-helpers';
+import { get_single_media, get_post_terms as get_post_terms_raw, get_posts } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
 import { process_taxonomy_data } from '$lib/utils/taxonomy';
 import { process_term_data } from '$lib/utils/term';
@@ -90,10 +90,10 @@ export async function generate_favicons( site_icon_id ) {
  *
  * @param {import('$types').WP_Post} post Post object.
  *
- * @return {ReturnType<typeof get_post_terms>} Array of favicons and tile images or null.
+ * @return {ReturnType<typeof get_post_terms_raw>} Array of favicons and tile images or null.
  */
-export async function get_post_terms_processed( post ) {
-	const data = await get_post_terms( post, get_api_auth() );
+export async function get_post_terms( post ) {
+	const data = await get_post_terms_raw( post, get_api_auth() );
 
 	if ( ! data || ( Array.isArray( data ) && ! data.length ) ) {
 		return data;

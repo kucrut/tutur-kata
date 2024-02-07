@@ -1,6 +1,6 @@
 import { error, redirect } from '@sveltejs/kit';
 import { generate_doc_title } from '$lib/utils/seo';
-import { get_post_terms_processed } from '$lib/api/utils.server';
+import { get_post_terms } from '$lib/api/utils.server';
 import { get_posts } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
 
@@ -24,7 +24,7 @@ export async function load( { locals, params } ) {
 
 		return {
 			post,
-			terms: await get_post_terms_processed( post ),
+			terms: await get_post_terms( post ),
 			title: generate_doc_title( locals.wp_info, {
 				title: post.title.rendered,
 				type: 'single',
