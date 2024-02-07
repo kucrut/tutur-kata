@@ -1,4 +1,5 @@
 <script>
+	import NothingFound from '$lib/components/nothing-found.svelte';
 	import PostsList from '$lib/components/posts-list.svelte';
 	import Seo from 'svelte-seo';
 
@@ -13,7 +14,6 @@
 		<h1>Recent Posts</h1>
 		<PostsList class="recent-posts" posts={data.posts} />
 	{:else}
-		<h1>Nothing found</h1>
-		<p>There are no blog posts to show at this time. Stay tuned! 😉</p>
+		<NothingFound />
 	{/if}
 </div>
