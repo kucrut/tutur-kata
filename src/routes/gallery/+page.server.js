@@ -1,20 +1,16 @@
 import { generate_doc_title } from '$lib/utils/seo';
 import { get_media } from '@kucrut/wp-api-helpers';
+import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals, parent } ) {
-	const title = generate_doc_title( locals.wp_info, {
-		title: 'Gallery',
-		type: 'archive',
-	} );
-
 	/** @type {import('$types').WP_Media[]} */
 	let items = [];
 
 	const { gallery_cat_ids } = await parent();
 
 	if ( ! gallery_cat_ids.length ) {
-		return { items, title };
+		return redirect( 302, '/' );
 	}
 
 	/** @type {Partial<import('@kucrut/wp-api-helpers').Fetch_Media_Args>} */
@@ -34,5 +30,11 @@ export async function load( { locals, parent } ) {
 		console.error( error );
 	}
 
-	return { items, title };
+	return {
+		items,
+		title: generate_doc_title( locals.wp_info, {
+			title: 'Gallery',
+			type: 'archive',
+		} ),
+	};
 }
