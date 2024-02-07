@@ -106,13 +106,15 @@ export async function get_post_terms_processed( post ) {
 }
 
 /**
- * Get latest posts
+ * Get blog posts
+ *
+ * @param {string} post_type Post type name.
  *
  * @return {Promise<import('$types').WP_Post[]>} Array of post objects.
  */
-export async function get_latest_posts() {
+export async function get_blog_posts( post_type ) {
 	try {
-		const posts = await get_posts( get_api_url(), get_api_auth() );
+		const posts = await get_posts( get_api_url(), get_api_auth(), post_type );
 
 		return await Promise.all(
 			posts.map( async post => {

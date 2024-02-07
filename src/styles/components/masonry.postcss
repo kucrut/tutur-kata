@@ -1,0 +1,28 @@
+.masonry {
+	display: grid;
+	grid-template-columns: repeat( auto-fit, minmax( min( 13rem, 100% ), 1fr ) );
+	grid-template-rows: masonry;
+	justify-content: center;
+	gap: var( --size-3 );
+
+	& > * {
+		align-self: start;
+	}
+
+	&.stretch-first > *:first-child {
+		grid-column: 1/ -1;
+	}
+
+	figure {
+		margin: unset;
+	}
+
+	img {
+		display: block;
+		margin-block-end: var( --size-3 );
+	}
+
+	p {
+		margin: unset;
+	}
+}

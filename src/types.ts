@@ -1,4 +1,4 @@
-import { info, post_view, taxonomy_view, term_view } from '@kucrut/wp-api-helpers';
+import { info, media_view, post_view, taxonomy_view, term_view } from '@kucrut/wp-api-helpers';
 import type { z } from 'zod';
 
 // See https://stackoverflow.com/a/54827898
@@ -10,12 +10,18 @@ export interface Favicon {
 	sizes: string;
 }
 
+export interface NavItem {
+	label: string;
+	path: string;
+}
+
 export interface TileImage {
 	content: string;
 	name: string;
 }
 
 export type WP_Info = z.infer< typeof info >;
+export type WP_Media = z.infer< typeof media_view >;
 export type WP_Page_Type = 'frontpage' | 'home' | 'archive' | 'single' | 'term_archive';
 export type WP_Post = z.infer< typeof post_view >;
 export type WP_Post_Term = { taxonomy: WP_Taxonomy; terms: WP_Term[] };

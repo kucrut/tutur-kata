@@ -1,5 +1,5 @@
 <script>
-	import { get_link } from '$lib/utils/path';
+	import { get_blog_post_link } from '$lib/utils/path';
 	import PostsList from '$lib/components/posts-list.svelte';
 	import Seo from 'svelte-seo';
 
@@ -15,6 +15,6 @@
 
 	{#if data.latest_posts?.length}
 		<h2>Recent Posts</h2>
-		<PostsList {get_link} class="recent-posts" posts={data.latest_posts} />
+		<PostsList {get_blog_post_link} class="recent-posts" posts={data.latest_posts} />
 	{/if}
 </div>
