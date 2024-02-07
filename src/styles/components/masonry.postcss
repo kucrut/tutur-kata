@@ -1,6 +1,6 @@
 .masonry {
 	display: grid;
-	grid-template-columns: repeat( auto-fit, minmax( min( 13rem, 100% ), 1fr ) );
+	grid-template-columns: repeat( auto-fit, minmax( min( 8rem, 100% ), 1fr ) );
 	grid-template-rows: masonry;
 	justify-content: center;
 	gap: var( --size-3 );
@@ -17,9 +17,13 @@
 		margin: unset;
 	}
 
+	figcaption {
+		/* TODO */
+		display: none;
+	}
+
 	img {
 		display: block;
-		margin-block-end: var( --size-3 );
 	}
 
 	p {

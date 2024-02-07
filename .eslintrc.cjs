@@ -63,5 +63,6 @@ module.exports = {
 				definedTypes: [ 'RequestInit' ],
 			},
 		],
+		'jsdoc/check-line-alignment': 'off',
 	},
 };

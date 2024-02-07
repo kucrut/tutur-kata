@@ -12,5 +12,8 @@ declare namespace App {
 		wp_info: import('$types').WP_Info;
 	}
 	// interface PageData {}
+	interface PageState {
+		show_modal?: boolean;
+	}
 	// interface Platform {}
 }
