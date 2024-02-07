@@ -1,21 +1,30 @@
-import { env } from '$env/dynamic/private';
 import { generate_doc_title } from '$lib/utils/seo';
 import { get_media } from '@kucrut/wp-api-helpers';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load( { locals } ) {
+export async function load( { locals, parent } ) {
+	const title = generate_doc_title( locals.wp_info, {
+		title: 'Gallery',
+		type: 'archive',
+	} );
+
 	/** @type {import('$types').WP_Media[]} */
 	let items = [];
 
-	/** @type {Partial<import('@kucrut/wp-api-helpers').Fetch_Media_Args>} */
-	const fetch_args = { parent: [ 0 ] };
-	const categories = ( env.WP_GALLERY_CATEGORY_IDS || '' )
-		.split( ',' )
-		.map( id => Number( id ) )
-		.filter( id => ! isNaN( id ) && typeof id === 'number' && id > 0 );
+	const { gallery_cat_ids } = await parent();
 
-	if ( categories ) {
-		fetch_args.categories = categories;
+	if ( ! gallery_cat_ids.length ) {
+		return { items, title };
+	}
+
+	/** @type {Partial<import('@kucrut/wp-api-helpers').Fetch_Media_Args>} */
+	const fetch_args = {
+		parent: [ 0 ],
+		// per_page: 100,
+	};
+
+	if ( gallery_cat_ids ) {
+		fetch_args.categories = gallery_cat_ids;
 	}
 
 	try {
@@ -25,11 +34,5 @@ export async function load( { locals } ) {
 		console.error( error );
 	}
 
-	return {
-		items,
-		title: generate_doc_title( locals.wp_info, {
-			title: 'Gallery',
-			type: 'archive',
-		} ),
-	};
+	return { items, title };
 }
