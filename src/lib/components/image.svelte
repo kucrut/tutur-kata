@@ -29,7 +29,9 @@
 </script>
 
 <figure>
-	<img {height} {sizes} {srcset} {src} {width} alt={media.alt_text} decoding="async" />
+	<a href={media.source_url}>
+		<img {height} {sizes} {srcset} {src} {width} alt={media.alt_text} decoding="async" />
+	</a>
 	<figcaption>
 		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		{@html media.caption.rendered}
