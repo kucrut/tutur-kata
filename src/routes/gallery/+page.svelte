@@ -15,7 +15,7 @@
 	{#if data.items.length}
 		<Masonry>
 			{#each data.items as item}
-				{#if item.media_type === 'video'}
+				{#if item.mime_type.startsWith( 'video' )}
 					<!-- svelte-ignore a11y-media-has-caption -->
 					<figure>
 						<video controls width="400px" src={item.source_url}>
@@ -26,11 +26,11 @@
 							{@html item.caption.rendered}
 						</figcaption>
 					</figure>
-				{:else if item.media_type === 'image' && item.media_details.sizes}
+				{:else if item.mime_type.startsWith( 'image' ) && item.media_details.sizes}
 					<Image media={item} />
 				{:else}
 					<figure>
-						<a download href={item.source_url}>{item.title}</a>
+						<a download href={item.source_url}>{item.title.rendered}</a>
 					</figure>
 				{/if}
 			{/each}
