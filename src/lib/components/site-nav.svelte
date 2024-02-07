@@ -2,7 +2,8 @@
 	import { get_blog_path } from '$lib/utils/path';
 	import { page } from '$app/stores';
 
-	export let with_gallery = false;
+	/** @type {import('$types').NavItem[]} */
+	export let items = [];
 
 	const blog_path = get_blog_path();
 
@@ -15,7 +16,7 @@
 	</span>
 
 	<a aria-current={aria_current( blog_path )} href={blog_path}>Blog</a>
-	{#if with_gallery}
-		<a aria-current={aria_current( '/gallery' )} href="/gallery">Gallery</a>
-	{/if}
+	{#each items as item}
+		<a aria-current={aria_current( item.path )} href={item.path}>{item.label}</a>
+	{/each}
 </nav>
