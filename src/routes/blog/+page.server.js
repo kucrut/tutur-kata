@@ -1,9 +1,14 @@
-import { get_latest_posts } from '$lib/api/utils.server';
+import { get_blog_posts } from '$lib/api/utils.server';
 import { generate_doc_title } from '$lib/utils/seo';
+import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals } ) {
-	const posts = await get_latest_posts();
+	if ( ! locals.wp_blog_post_type ) {
+		redirect( 302, '/' );
+	}
+
+	const posts = await get_blog_posts( locals.wp_blog_post_type );
 
 	return {
 		posts,
