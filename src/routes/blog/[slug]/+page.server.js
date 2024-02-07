@@ -34,6 +34,6 @@ export async function load( { locals, params } ) {
 	} catch ( err ) {
 		// eslint-disable-next-line no-console
 		console.error( '/blog/[slug] server loader:', err );
-		error( 500 );
+		error( 404, 'Not found.' );
 	}
 }
