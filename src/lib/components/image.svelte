@@ -29,7 +29,7 @@
 </script>
 
 <figure>
-	<a href={media.source_url} on:click>
+	<a data-pswp-height={height} data-pswp-width={width} href={media.source_url}>
 		<img {height} {sizes} {srcset} {src} {width} alt={media.alt_text} decoding="async" />
 	</a>
 	<figcaption>
