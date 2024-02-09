@@ -24,7 +24,7 @@
 
 		lightbox = new ps_lightbox( {
 			gallery: gallery.get_el(),
-			children: 'a',
+			children: 'a[data-pswp-width]',
 			pswpModule: () => import( 'photoswipe' ),
 		} );
 
