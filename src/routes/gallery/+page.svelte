@@ -1,6 +1,8 @@
 <script>
-	import { onMount } from 'svelte';
+	import { beforeUpdate, onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import { pushState } from '$app/navigation';
+	import ps_lightbox from 'photoswipe/lightbox';
 	import Image from '$lib/components/image.svelte';
 	import Masonry from '$lib/components/masonry.svelte';
 	import Seo from 'svelte-seo';
@@ -10,35 +12,36 @@
 	export let data;
 	/** @type {import('svelte').SvelteComponent} */
 	let gallery;
+	/** @type {ps_lightbox} */
+	let lightbox;
 
 	$: has_image = data.items.some( item => item.mime_type.startsWith( 'image' ) );
-
-	/**
-	 * Show modal
-	 *
-	 * @param {CustomEvent} event Mouse event.
-	 */
-	function show_modal( event ) {
-		event.preventDefault();
-
-		pushState( '', {
-			show_modal: true,
-		} );
-	}
 
 	onMount( async () => {
 		if ( ! has_image ) {
 			return;
 		}
 
-		const { default: ps_lightbox } = await import( 'photoswipe/lightbox' );
-		const lightbox = new ps_lightbox( {
+		lightbox = new ps_lightbox( {
 			gallery: gallery.get_el(),
 			children: 'a',
 			pswpModule: () => import( 'photoswipe' ),
 		} );
 
+		lightbox.on( 'beforeOpen', () => {
+			pushState( '', { show_modal: true } );
+		} );
+		lightbox.on( 'close', () => {
+			pushState( '', { show_modal: false } );
+		} );
+
 		lightbox.init();
+	} );
+
+	beforeUpdate( () => {
+		if ( ! $page.state.show_modal && lightbox?.pswp ) {
+			lightbox.pswp.close();
+		}
 	} );
 </script>
 
@@ -62,7 +65,7 @@
 						</figcaption>
 					</figure>
 				{:else if item.mime_type.startsWith( 'image' ) && item.media_details.sizes}
-					<Image media={item} on:click={show_modal} />
+					<Image media={item} />
 				{:else}
 					<figure>
 						<a download href={item.source_url}>{item.title.rendered}</a>
