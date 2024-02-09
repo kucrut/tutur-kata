@@ -24,6 +24,7 @@
 		"eslint-plugin-svelte": "^2.35.1",
 		"highlight.js": "^11.9.0",
 		"open-props": "^1.6.18",
+		"photoswipe": "^5.4.3",
 		"postcss": "^8.4.33",
 		"postcss-html": "^1.6.0",
 		"postcss-import": "^16.0.0",

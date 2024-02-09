@@ -1,31 +1,48 @@
 <script>
+	import { beforeUpdate, onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { pushState } from '$app/navigation';
+	import ps_lightbox from 'photoswipe/lightbox';
 	import Image from '$lib/components/image.svelte';
 	import Masonry from '$lib/components/masonry.svelte';
-	import Popover from '$lib/components/popover.svelte';
 	import Seo from 'svelte-seo';
+	import 'photoswipe/style.css';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
-	/** @type {import('$types').WP_Media|undefined} */
-	let current_media;
+	/** @type {import('svelte').SvelteComponent} */
+	let gallery;
+	/** @type {ps_lightbox} */
+	let lightbox;
 
-	/**
-	 * Show modal
-	 *
-	 * @param {import('$types').WP_Media} item Media item.
-	 * @param {MouseEvent} event Mouse event.
-	 */
-	function show_modal( item, event ) {
-		event.preventDefault();
+	$: has_image = data.items.some( item => item.mime_type.startsWith( 'image' ) );
 
-		current_media = item;
+	onMount( async () => {
+		if ( ! has_image ) {
+			return;
+		}
 
-		pushState( '', {
-			show_modal: true,
+		lightbox = new ps_lightbox( {
+			gallery: gallery.get_el(),
+			children: 'a[data-pswp-width]',
+			pswpModule: () => import( 'photoswipe' ),
 		} );
-	}
+
+		lightbox.on( 'beforeOpen', () => {
+			pushState( '', { show_modal: true } );
+		} );
+		lightbox.on( 'close', () => {
+			pushState( '', { show_modal: false } );
+		} );
+
+		lightbox.init();
+	} );
+
+	beforeUpdate( () => {
+		if ( ! $page.state.show_modal && lightbox?.pswp ) {
+			lightbox.pswp.close();
+		}
+	} );
 </script>
 
 <Seo title={data.title} />
@@ -34,7 +51,7 @@
 	<h1>Gallery</h1>
 
 	{#if data.items.length}
-		<Masonry>
+		<Masonry bind:this={gallery}>
 			{#each data.items as item}
 				{#if item.mime_type.startsWith( 'video' )}
 					<!-- svelte-ignore a11y-media-has-caption -->
@@ -48,7 +65,7 @@
 						</figcaption>
 					</figure>
 				{:else if item.mime_type.startsWith( 'image' ) && item.media_details.sizes}
-					<Image media={item} on:click={e => show_modal( item, e )} />
+					<Image media={item} />
 				{:else}
 					<figure>
 						<a download href={item.source_url}>{item.title.rendered}</a>
@@ -60,17 +77,3 @@
 		<p>No media found.</p>
 	{/if}
 </div>
-
-{#if $page.state.show_modal && current_media?.mime_type.startsWith( 'image' )}
-	<Popover on:close={() => history.back()}>
-		<figure>
-			<img
-				alt={current_media.alt_text}
-				height={current_media.media_details.height}
-				src={current_media.source_url}
-				width={current_media.media_details.width}
-			/>
-			<!-- TODO: Caption? -->
-		</figure>
-	</Popover>
-{/if}
