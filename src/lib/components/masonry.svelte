@@ -8,6 +8,10 @@
 	/** @type {number} */
 	let gap;
 
+	export function get_el() {
+		return el;
+	}
+
 	function layout() {
 		const items = el.querySelectorAll( 'figure' );
 
