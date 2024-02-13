@@ -118,7 +118,7 @@ export async function get_post_terms( post ) {
  */
 export async function get_posts( post_type ) {
 	try {
-		const posts = await get_posts_raw( get_api_url(), get_api_auth(), post_type );
+		const posts = await get_posts_raw( get_api_url(), get_api_auth(), post_type, 'view' );
 
 		return await Promise.all(
 			posts.map( async post => {

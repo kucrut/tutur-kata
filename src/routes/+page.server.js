@@ -29,7 +29,7 @@ async function get_frontpage( url, auth ) {
 	}
 
 	try {
-		const post = await get_single_post( frontpage_id, url, auth, 'pages' );
+		const post = await get_single_post( frontpage_id, url, auth, 'pages', 'view' );
 		return await process_post_data( post );
 	} catch ( err ) {
 		// eslint-disable-next-line no-console

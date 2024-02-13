@@ -5,7 +5,7 @@
 	export let content_class = '';
 	/** @type {import('@kucrut/wp-api-helpers').WP_Post} */
 	export let post;
-	/** @type {import('@kucrut/wp-api-helpers').WP_Post_Terms|null} */
+	/** @type {import('@kucrut/wp-api-helpers').WP_Post_Terms[]|null} */
 	export let terms = null;
 </script>
 

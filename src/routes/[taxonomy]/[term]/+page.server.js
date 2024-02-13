@@ -19,7 +19,7 @@ export async function load( { locals, params } ) {
 		const [ term_raw ] = terms;
 		const term = process_term_data( term_raw );
 
-		const taxonomy_raw = await get_single_taxonomy( term.taxonomy, locals.wp_api_url, locals.wp_api_auth );
+		const taxonomy_raw = await get_single_taxonomy( term.taxonomy, locals.wp_api_url, locals.wp_api_auth, 'view' );
 		const taxonomy = process_taxonomy_data( taxonomy_raw );
 
 		const posts_raw = await get_posts( locals.wp_api_url, locals.wp_api_auth, 'posts', 'view', {
