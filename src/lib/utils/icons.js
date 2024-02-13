@@ -1,7 +1,7 @@
 /**
  * Get icon
  *
- * @param {import('$types').WP_Taxonomy} taxonomy Taxonomy object.
+ * @param {import('@kucrut/wp-api-helpers').WP_Taxonomy} taxonomy Taxonomy object.
  * @return {string} Icon name.
  */
 export function get_taxonomy_icon( taxonomy ) {

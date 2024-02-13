@@ -11,7 +11,7 @@ import { process_post_data } from '$lib/utils/post';
  * @param {string} url  WP API URL.
  * @param {string} auth WP API auth.
  *
- * @return {Promise<import('$types').WP_Post>} Post object.
+ * @return {Promise<import('@kucrut/wp-api-helpers').WP_Post>} Post object.
  */
 async function get_frontpage( url, auth ) {
 	if ( ! env.WP_FRONTPAGE_ID ) {

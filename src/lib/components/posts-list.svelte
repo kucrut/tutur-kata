@@ -4,7 +4,7 @@
 	let cls = '';
 	export { cls as class };
 
-	/** @type {import('$types').WP_Post[]} */
+	/** @type {import('@kucrut/wp-api-helpers').WP_Post[]} */
 	export let posts;
 </script>
 

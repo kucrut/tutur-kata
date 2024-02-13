@@ -4,7 +4,7 @@ import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { locals, parent } ) {
-	/** @type {import('$types').WP_Media[]} */
+	/** @type {import('@kucrut/wp-api-helpers').WP_Media[]} */
 	let items = [];
 
 	const { gallery_cat_ids } = await parent();

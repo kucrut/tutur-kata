@@ -4,9 +4,9 @@ import { highlight } from '$lib/utils/highlight';
 /**
  * Process WP post data
  *
- * @param {import('$types').WP_Post} post WP post object.
+ * @param {import('@kucrut/wp-api-helpers').WP_Post} post WP post object.
  *
- * @return {Promise<import('$types').WP_Post>} Processed WP post object.
+ * @return {Promise<import('@kucrut/wp-api-helpers').WP_Post>} Processed WP post object.
  */
 export async function process_post_data( post ) {
 	const { content, title } = post;

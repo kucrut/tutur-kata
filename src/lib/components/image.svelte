@@ -1,5 +1,5 @@
 <script>
-	/** @type {import('$types').WP_Media} */
+	/** @type {import('@kucrut/wp-api-helpers').WP_Media} */
 	export let media;
 
 	/** @type {number|null} */
