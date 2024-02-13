@@ -24,7 +24,7 @@ export async function load( { locals, parent } ) {
 	}
 
 	try {
-		items = await get_media( locals.wp_api_url, locals.wp_api_auth, fetch_args );
+		items = await get_media( locals.wp_api_url, locals.wp_api_auth, 'view', fetch_args );
 	} catch ( error ) {
 		// eslint-disable-next-line no-console
 		console.error( error );

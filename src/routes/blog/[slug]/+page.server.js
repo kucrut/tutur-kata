@@ -11,7 +11,7 @@ export async function load( { locals, params } ) {
 	}
 
 	try {
-		const data = await get_posts( locals.wp_api_url, locals.wp_api_auth, locals.wp_blog_post_type, {
+		const data = await get_posts( locals.wp_api_url, locals.wp_api_auth, locals.wp_blog_post_type, 'view', {
 			slug: [ params.slug ],
 		} );
 

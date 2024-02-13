@@ -2,7 +2,7 @@ import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 import { generate_doc_title } from '$lib/utils/seo';
 import { get_posts } from '$lib/api/utils.server';
-import { get_post } from '@kucrut/wp-api-helpers';
+import { get_single_post } from '@kucrut/wp-api-helpers';
 import { process_post_data } from '$lib/utils/post';
 
 /**
@@ -29,7 +29,7 @@ async function get_frontpage( url, auth ) {
 	}
 
 	try {
-		const post = await get_post( frontpage_id, url, auth, 'pages' );
+		const post = await get_single_post( frontpage_id, url, auth, 'pages' );
 		return await process_post_data( post );
 	} catch ( err ) {
 		// eslint-disable-next-line no-console
