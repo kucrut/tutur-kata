@@ -15,7 +15,7 @@
 		<svelte:fragment slot="before-content" let:terms>
 			{#if terms?.length}
 				{#each terms as post_terms}
-					{@const icon = get_taxonomy_icon( post_terms.taxonomy ) }
+					{@const ( icon = get_taxonomy_icon( post_terms.taxonomy ) )}
 					<TermsList
 						class="terms-list has-icon--before has-icon:{icon}"
 						taxonomy={post_terms.taxonomy}

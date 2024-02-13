@@ -92,7 +92,7 @@ export async function generate_favicons( site_icon_id ) {
 /**
  * Fetch post terms
  *
- * @param {import('$types').WP_Post} post Post object.
+ * @param {import('@kucrut/wp-api-helpers').WP_Post} post Post object.
  *
  * @return {ReturnType<typeof get_post_terms_raw>} Array of favicons and tile images or null.
  */
@@ -114,11 +114,11 @@ export async function get_post_terms( post ) {
  *
  * @param {string} post_type Post type name.
  *
- * @return {Promise<import('$types').WP_Post[]>} Array of post objects.
+ * @return {Promise<import('@kucrut/wp-api-helpers').WP_Post[]>} Array of post objects.
  */
 export async function get_posts( post_type ) {
 	try {
-		const posts = await get_posts_raw( get_api_url(), get_api_auth(), post_type );
+		const posts = await get_posts_raw( get_api_url(), get_api_auth(), post_type, 'view' );
 
 		return await Promise.all(
 			posts.map( async post => {

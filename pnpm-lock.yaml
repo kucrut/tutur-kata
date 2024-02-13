@@ -12,8 +12,8 @@ devDependencies:
     specifier: ^2.1.1
     version: 2.1.1(postcss@8.4.34)
   '@kucrut/wp-api-helpers':
-    specifier: ^0.2.0
-    version: 0.2.0(zod@3.22.4)
+    specifier: ^0.3.1
+    version: 0.3.1(zod@3.22.4)
   '@playwright/test':
     specifier: ^1.41.2
     version: 1.41.2
@@ -2093,8 +2093,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@kucrut/wp-api-helpers@0.2.0(zod@3.22.4):
-    resolution: {integrity: sha512-j979Drf10JM957s7j1ijf8lrj8rEcWYJj6CRtNUMwDPXSzNrgJpjaQXCvrmHtfMezNrS4eV3jEGF9NsW8dFuug==}
+  /@kucrut/wp-api-helpers@0.3.1(zod@3.22.4):
+    resolution: {integrity: sha512-V1a+NJ5eNZajaEYcN0PdEJ+uh68kYIsaBRNvSZpG6PbrQX8Is1Dt5cqEfjekWj+nBTEqx9jMVIIn+cuowALz0w==}
     peerDependencies:
       zod: ^3.22.4
     dependencies:
@@ -6156,7 +6156,7 @@ packages:
     resolution: {integrity: sha512-kN9dJbvnySHULIluDHy32WHRUu3Og7B9sbY7tsFLctQkIqnMh3hErYgdMjTYuqmcXX+lK5T1lnUt3G7zNswmZA==}
     dependencies:
       spdx-expression-parse: 3.0.1
-      spdx-license-ids: 3.0.16
+      spdx-license-ids: 3.0.17
     dev: true
 
   /spdx-exceptions@2.4.0:
@@ -6167,7 +6167,7 @@ packages:
     resolution: {integrity: sha512-cbqHunsQWnJNE6KhVSMsMeH5H/L9EpymbzqTQ3uLwNCLZ1Q481oWaofqH7nO6V07xlXwY6PhQdQ2IedWx/ZK4Q==}
     dependencies:
       spdx-exceptions: 2.4.0
-      spdx-license-ids: 3.0.16
+      spdx-license-ids: 3.0.17
     dev: true
 
   /spdx-expression-parse@4.0.0:
@@ -6179,6 +6179,10 @@ packages:
 
   /spdx-license-ids@3.0.16:
     resolution: {integrity: sha512-eWN+LnM3GR6gPu35WxNgbGl8rmY1AEmoMDvL/QD6zYmPWgywxWqJWNdLGT+ke8dKNWrcYgYjPpG5gbTfghP8rw==}
+    dev: true
+
+  /spdx-license-ids@3.0.17:
+    resolution: {integrity: sha512-sh8PWc/ftMqAAdFiBu6Fy6JUOYjqDJBJvIhpfDMyHrr0Rbp5liZqd4TjtQ/RgfLjKFZb+LMx5hpml5qOWy0qvg==}
     dev: true
 
   /string-width@4.2.3:

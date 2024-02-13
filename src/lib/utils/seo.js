@@ -1,14 +1,8 @@
 /**
- * @typedef {import('$types').WP_Post} Post
- * @typedef {import('$types').WP_Page_Object} WP_Page_Object
- * @typedef {import('$types').WP_Info} WP_Info
- */
-
-/**
  * Generate document title
  *
- * @param {WP_Info}        wp_info     WordPress site info.
- * @param {WP_Page_Object} page_object Page type.
+ * @param {import('@kucrut/wp-api-helpers').WP_Info} wp_info WordPress site info.
+ * @param {import('$types').WP_Page_Object} page_object Page type.
  * @param {string}         separator   Separator.
  *
  * @return {string} Document title.

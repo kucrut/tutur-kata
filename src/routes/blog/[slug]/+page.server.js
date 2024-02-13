@@ -11,16 +11,15 @@ export async function load( { locals, params } ) {
 	}
 
 	try {
-		const data = await get_posts( locals.wp_api_url, locals.wp_api_auth, locals.wp_blog_post_type, {
+		const posts = await get_posts( locals.wp_api_url, locals.wp_api_auth, locals.wp_blog_post_type, 'view', {
 			slug: [ params.slug ],
 		} );
 
-		if ( ! data.length ) {
+		if ( ! posts.length ) {
 			error( 404, 'Not found.' );
 		}
 
-		const [ post_raw ] = data;
-		const post = await process_post_data( post_raw );
+		const post = await process_post_data( posts[ 0 ] );
 
 		return {
 			post,

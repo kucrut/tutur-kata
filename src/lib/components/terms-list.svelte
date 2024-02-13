@@ -2,9 +2,9 @@
 	let cls = '';
 
 	export { cls as class };
-	/** @type {import('$types').WP_Taxonomy} */
+	/** @type {import('@kucrut/wp-api-helpers').WP_Taxonomy} */
 	export let taxonomy;
-	/** @type {import('$types').WP_Term[]} */
+	/** @type {import('@kucrut/wp-api-helpers').WP_Term[]} */
 	export let terms;
 </script>
 
