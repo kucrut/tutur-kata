@@ -4,13 +4,12 @@
 	import { pushState } from '$app/navigation';
 	import ps_lightbox from 'photoswipe/lightbox';
 	import Image from '$lib/components/image.svelte';
-	import Masonry from '$lib/components/masonry.svelte';
 	import Seo from 'svelte-seo';
 	import 'photoswipe/style.css';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
-	/** @type {import('svelte').SvelteComponent} */
+	/** @type {HTMLDivElement} */
 	let gallery;
 	/** @type {ps_lightbox} */
 	let lightbox;
@@ -23,7 +22,7 @@
 		}
 
 		lightbox = new ps_lightbox( {
-			gallery: gallery.get_el(),
+			gallery,
 			children: 'a[data-pswp-width]',
 			pswpModule: () => import( 'photoswipe' ),
 		} );
@@ -51,7 +50,7 @@
 	<h1>Gallery</h1>
 
 	{#if data.items.length}
-		<Masonry bind:this={gallery}>
+		<div bind:this={gallery}>
 			{#each data.items as item}
 				{#if item.mime_type.startsWith( 'video' )}
 					<!-- svelte-ignore a11y-media-has-caption -->
@@ -72,7 +71,7 @@
 					</figure>
 				{/if}
 			{/each}
-		</Masonry>
+		</div>
 	{:else}
 		<p>No media found.</p>
 	{/if}
