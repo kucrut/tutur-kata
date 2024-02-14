@@ -50,7 +50,7 @@
 	<h1>Gallery</h1>
 
 	{#if data.items.length}
-		<div bind:this={gallery}>
+		<div class="gallery" bind:this={gallery}>
 			{#each data.items as item}
 				{#if item.mime_type.startsWith( 'video' )}
 					<!-- svelte-ignore a11y-media-has-caption -->
