@@ -1,13 +1,8 @@
 .gallery {
 	display: grid;
 	grid-template-columns: repeat( auto-fit, minmax( min( 8rem, 100% ), 1fr ) );
-	grid-template-rows: masonry;
-	justify-content: center;
 	gap: var( --size-3 );
-
-	& > * {
-		align-self: start;
-	}
+	align-items: start;
 
 	&.stretch-first > *:first-child {
 		grid-column: 1/ -1;
@@ -15,6 +10,10 @@
 
 	figure {
 		margin: unset;
+		inline-size: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	figcaption {
@@ -24,7 +23,7 @@
 
 	img,
 	video {
-		max-width: 100%;
+		max-inline-size: 100%;
 		border-radius: var( --radius-conditional-1 );
 		box-shadow: var( --shadow-4 );
 	}
